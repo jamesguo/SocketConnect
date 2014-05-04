@@ -204,12 +204,13 @@
     NSMutableData * data ;
     while (1) {
         data = [[NSMutableData alloc] init];
-        const unsigned char * lengthBuffer[4];
+        char* lengthBuffer;
         int result = recv(socketFileDescriptor, &lengthBuffer, 4, 0);
-        NSMutableData *lengthData = [[NSMutableData alloc] init];
+//        NSMutableData *lengthData = [[NSMutableData alloc] init];
         if (result==4) {
-            [lengthData appendBytes:lengthBuffer length:4];
-            int totalLength = CFSwapInt32BigToHost(*(int*)([lengthData bytes]));
+//            [lengthData appendBytes:lengthBuffer length:4];
+            int totalLength = lengthBuffer[0]<<24|lengthBuffer[1]<<16|lengthBuffer[2]<<8|lengthBuffer[3];
+//            int totalLength = CFSwapInt32BigToHost(*(int*)([lengthData bytes]));
 //            int totalLength = *(int*)lengthBuffer;
             int currentOffset = 0;
             const char * buffer[1024];

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A55B0CE191243A1000BCCD4 /* TypeSwapUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A55B0CD191243A1000BCCD4 /* TypeSwapUtil.m */; };
+		1AAE170B19127D3200827139 /* libiOSHierarchyViewer_fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAE170A19127D3200827139 /* libiOSHierarchyViewer_fat.a */; };
+		1AAE171A1912809D00827139 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAE17191912809D00827139 /* QuartzCore.framework */; };
 		C8B7DC5219109A500093FEDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5119109A500093FEDC /* Foundation.framework */; };
 		C8B7DC5419109A500093FEDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5319109A500093FEDC /* CoreGraphics.framework */; };
 		C8B7DC5619109A500093FEDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5519109A500093FEDC /* UIKit.framework */; };
@@ -37,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A55B0CC191243A1000BCCD4 /* TypeSwapUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeSwapUtil.h; path = ../TypeSwapUtil.h; sourceTree = "<group>"; };
+		1A55B0CD191243A1000BCCD4 /* TypeSwapUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeSwapUtil.m; path = ../TypeSwapUtil.m; sourceTree = "<group>"; };
+		1AAE170A19127D3200827139 /* libiOSHierarchyViewer_fat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOSHierarchyViewer_fat.a; path = "../../iOS-Hierarchy-Viewer/compiled/libiOSHierarchyViewer_fat.a"; sourceTree = "<group>"; };
+		1AAE17181912807800827139 /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSHierarchyViewer.h; sourceTree = "<group>"; };
+		1AAE17191912809D00827139 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C8B7DC4E19109A500093FEDC /* SocketConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7DC5119109A500093FEDC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C8B7DC5319109A500093FEDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AAE171A1912809D00827139 /* QuartzCore.framework in Frameworks */,
+				1AAE170B19127D3200827139 /* libiOSHierarchyViewer_fat.a in Frameworks */,
 				C8B7DC5419109A500093FEDC /* CoreGraphics.framework in Frameworks */,
 				C8B7DC5619109A500093FEDC /* UIKit.framework in Frameworks */,
 				C8B7DC5219109A500093FEDC /* Foundation.framework in Frameworks */,
@@ -109,6 +119,8 @@
 		C8B7DC5019109A500093FEDC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1AAE17191912809D00827139 /* QuartzCore.framework */,
+				1AAE170A19127D3200827139 /* libiOSHierarchyViewer_fat.a */,
 				C8B7DC5119109A500093FEDC /* Foundation.framework */,
 				C8B7DC5319109A500093FEDC /* CoreGraphics.framework */,
 				C8B7DC5519109A500093FEDC /* UIKit.framework */,
@@ -120,6 +132,9 @@
 		C8B7DC5719109A500093FEDC /* SocketConnect */ = {
 			isa = PBXGroup;
 			children = (
+				1AAE17181912807800827139 /* iOSHierarchyViewer.h */,
+				1A55B0CC191243A1000BCCD4 /* TypeSwapUtil.h */,
+				1A55B0CD191243A1000BCCD4 /* TypeSwapUtil.m */,
 				C8B7DC951910BE410093FEDC /* Main_iPad.storyboard */,
 				C8B7DC961910BE410093FEDC /* Main_iPhone.storyboard */,
 				C8B7DC8D1910A9430093FEDC /* SocketViewController.h */,
@@ -271,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8B7DC6B19109A510093FEDC /* ViewController.m in Sources */,
+				1A55B0CE191243A1000BCCD4 /* TypeSwapUtil.m in Sources */,
 				C8B7DC8F1910A9430093FEDC /* SocketViewController.m in Sources */,
 				C8B7DC6219109A510093FEDC /* AppDelegate.m in Sources */,
 				C8B7DC5E19109A510093FEDC /* main.m in Sources */,
@@ -398,6 +414,14 @@
 				GCC_PREFIX_HEADER = "SocketConnect/SocketConnect-Prefix.pch";
 				INFOPLIST_FILE = "SocketConnect/SocketConnect-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/James/Work/iOS-Hierarchy-Viewer/compiled",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -412,6 +436,14 @@
 				GCC_PREFIX_HEADER = "SocketConnect/SocketConnect-Prefix.pch";
 				INFOPLIST_FILE = "SocketConnect/SocketConnect-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/James/Work/iOS-Hierarchy-Viewer/compiled",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

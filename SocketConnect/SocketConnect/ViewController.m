@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "TypeSwapUtil.h"
 @interface ViewController ()
 {
     NSDictionary * _items;
@@ -27,6 +27,34 @@
     self.mainTableView.delegate = self;
     
     self.title=@"Demo";
+    
+//    int blah = 3840;
+//    unsigned char* pBlah;
+//    [TypeSwapUtil SwapIntToBytes:blah:pBlah];
+//    printf("Default\n");
+//    printf("%d\n", pBlah [0]);
+//    printf("%d\n", pBlah [1]);
+//    printf("%d\n", pBlah [2]);
+//    printf("%d\n", pBlah [3]);
+//    
+//    
+//    
+//    int result = [TypeSwapUtil SwapBytesToInt:pBlah];
+//    printf("result:%d\n", result);
+//    
+//    char bytes[4];
+//    bytes[0] = (blah >> 24) & 0xFF;
+//    bytes[1] = (blah >> 16) & 0xFF;
+//    bytes[2] = (blah >> 8) & 0xFF;
+//    bytes[3] = blah & 0xFF;
+//    printf("Second\n");
+//    printf("%d\n", bytes [0]);
+//    printf("%d\n", bytes [1]);
+//    printf("%d\n", bytes [2]);
+//    printf("%d\n", bytes [3]);
+//    result = [TypeSwapUtil SwapBytesToInt:bytes];
+//    printf("result:%d\n", result);
+    
 }
 
 - (void)didReceiveMemoryWarning
