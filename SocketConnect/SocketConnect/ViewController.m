@@ -112,15 +112,15 @@
         id controller = [[controllerClass alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
     }else{
-        NSMutableArray* resultArray = [[NSMutableArray alloc]init];
-        [CommandFind getViews:NAME TextValue:@"Socket Demo" Multi:TRUE Result:resultArray];
-        NSMutableDictionary * viewItem = [resultArray objectAtIndex:0];
-        long viewID = [[viewItem objectForKey:@"id"]longValue];
-//        UIView* view=[CommandFind findViewById:viewID];
-        UIView* view;
-        UIAccessibilityElement* element;
-        [UIAccessibilityElement accessibilityElement:&element view:&view withLabel:@"Socket Demo" value:nil traits:UIAccessibilityTraitNone tappable:YES error:nil];
-        [CommandClick tapAccessibilityElement:element inView:view];
+//        NSMutableArray* resultArray = [[NSMutableArray alloc]init];
+//        [CommandFind getViews:NAME TextValue:@"Socket Demo" Multi:TRUE Result:resultArray];
+//        NSMutableDictionary * viewItem = [resultArray objectAtIndex:0];
+//        long viewID = [[viewItem objectForKey:@"id"]longValue];
+////        UIView* view=[CommandFind findViewById:viewID];
+//        UIView* view;
+//        UIAccessibilityElement* element;
+//        [UIAccessibilityElement accessibilityElement:&element view:&view withLabel:@"Socket Demo" value:nil traits:UIAccessibilityTraitNone tappable:YES error:nil];
+//        [CommandClick tapAccessibilityElement:element inView:view];
 //        if (view)
 //        {
 //            

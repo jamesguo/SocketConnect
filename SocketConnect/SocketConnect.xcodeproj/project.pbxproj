@@ -10,6 +10,7 @@
 		1A55B0CE191243A1000BCCD4 /* TypeSwapUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A55B0CD191243A1000BCCD4 /* TypeSwapUtil.m */; };
 		1AAE171A1912809D00827139 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAE17191912809D00827139 /* QuartzCore.framework */; };
 		C8667AE419177363003D44CF /* CommandKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667AE319177363003D44CF /* CommandKey.m */; };
+		C8667B5A1917855A003D44CF /* AutoDirver.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B591917855A003D44CF /* AutoDirver.m */; };
 		C8B7DC5219109A500093FEDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5119109A500093FEDC /* Foundation.framework */; };
 		C8B7DC5419109A500093FEDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5319109A500093FEDC /* CoreGraphics.framework */; };
 		C8B7DC5619109A500093FEDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5519109A500093FEDC /* UIKit.framework */; };
@@ -73,10 +74,11 @@
 /* Begin PBXFileReference section */
 		1A55B0CC191243A1000BCCD4 /* TypeSwapUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeSwapUtil.h; path = ../TypeSwapUtil.h; sourceTree = "<group>"; };
 		1A55B0CD191243A1000BCCD4 /* TypeSwapUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeSwapUtil.m; path = ../TypeSwapUtil.m; sourceTree = "<group>"; };
-		1AAE17181912807800827139 /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSHierarchyViewer.h; sourceTree = "<group>"; };
 		1AAE17191912809D00827139 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C8667AE219177363003D44CF /* CommandKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandKey.h; sourceTree = "<group>"; };
 		C8667AE319177363003D44CF /* CommandKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandKey.m; sourceTree = "<group>"; };
+		C8667B581917855A003D44CF /* AutoDirver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoDirver.h; sourceTree = "<group>"; };
+		C8667B591917855A003D44CF /* AutoDirver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoDirver.m; sourceTree = "<group>"; };
 		C8B7DC4E19109A500093FEDC /* SocketConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7DC5119109A500093FEDC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C8B7DC5319109A500093FEDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -239,7 +241,6 @@
 				C8C895AB1915D82F000D50D8 /* iOSHierarchyViewer.h */,
 				C8C895AC1915D82F000D50D8 /* iOSHierarchyViewer.m */,
 				C8C895AD1915D82F000D50D8 /* webapp */,
-				1AAE17181912807800827139 /* iOSHierarchyViewer.h */,
 				C8B7DC951910BE410093FEDC /* Main_iPad.storyboard */,
 				C8B7DC961910BE410093FEDC /* Main_iPhone.storyboard */,
 				C8B7DC8D1910A9430093FEDC /* SocketViewController.h */,
@@ -356,6 +357,8 @@
 				C8C8964B19163747000D50D8 /* CommandClick.m */,
 				C8667AE219177363003D44CF /* CommandKey.h */,
 				C8667AE319177363003D44CF /* CommandKey.m */,
+				C8667B581917855A003D44CF /* AutoDirver.h */,
+				C8667B591917855A003D44CF /* AutoDirver.m */,
 			);
 			name = action;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				C8B7DC6B19109A510093FEDC /* ViewController.m in Sources */,
 				C8C896891917287A000D50D8 /* NSFileManager-KIFAdditions.m in Sources */,
 				C8C8964219160D42000D50D8 /* JSONKit.m in Sources */,
+				C8667B5A1917855A003D44CF /* AutoDirver.m in Sources */,
 				C8C895F81915D82F000D50D8 /* HVHierarchyHandler.m in Sources */,
 				C8C896901917287A000D50D8 /* UITableView-KIFAdditions.m in Sources */,
 				C8C8968F1917287A000D50D8 /* UIWindow-KIFAdditions.m in Sources */,

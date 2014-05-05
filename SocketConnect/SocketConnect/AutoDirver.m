@@ -1,125 +1,39 @@
 //
-//  SocketViewController.m
+//  AutoDirver.m
 //  SocketConnect
 //
-//  Created by yrguo on 14-4-30.
+//  Created by yrguo on 14-5-5.
 //  Copyright (c) 2014年 yrguo. All rights reserved.
 //
 
-#import "SocketViewController.h"
-#import "UIView-KIFAdditions.h"
+#import "AutoDirver.h"
+#import "ActionProtocol.h"
+#import "TypeSwapUtil.h"
 #import <arpa/inet.h>
 #import <netdb.h>
-#import "CommandClick.h"
-#import "CommandFind.h"
-#import "CommandKey.h"
+
 #define kTestHost @"http://172.16.156.234"
-#define kTestPort 6100
+#define kTestPort @"6100"
 #define TIMEOUT 10
-@interface SocketViewController ()
+@interface AutoDirver ()
 {
     NSThread * backgroundThread;
     int socketFileDescriptor;
 }
 @end
+@implementation AutoDirver
 
-@implementation SocketViewController
-
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(BOOL)start
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    self.title = @"Socket";
-    
-    self.serverAddressTextField.delegate = self;
-    self.serverPortTextField.delegate = self;
-    
-    self.serverAddressTextField.text = kTestHost;
-    self.serverPortTextField.text = [[NSNumber numberWithInt:kTestPort] stringValue];
-    self.receiveTextView.text = @"";
-    self.receiveTextView.editable = NO;
-    [self.connectButton addTarget:self action:@selector(connectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    [self performSelector:@selector(doIt) withObject:nil afterDelay:5];
-    
-    
-}
-+ (UIView *)recursiveSearchClickableForView:(UIView *)parent
-{
-    if ([parent isKindOfClass:[UILabel class]]) {
-        return parent;
-    }
-    for (UIView *v in [parent subviews]) {
-        UIView *result = [SocketViewController recursiveSearchClickableForView:v];
-        if (result) {
-            return result;
-        }
-    }
-    return nil;
-}
-- (void)doIt
-{
-    NSMutableArray* resultArray = [[NSMutableArray alloc]init];
-//    [CommandFind getViews:CLASS_NAME TextValue:@"UITextField" Multi:TRUE Result:resultArray];
-//    [CommandFind getViews:NAME TextValue:@"http://172.16.156.234" Multi:TRUE Result:resultArray];
-    [CommandFind getViews:NAME TextValue:@"6100" Multi:TRUE Result:resultArray];
-//    [CommandFind getViews:NAME TextValue:@"Connect" Multi:TRUE Result:resultArray];
-    NSMutableDictionary * viewItem = [resultArray objectAtIndex:0];
-    long viewID = [[viewItem objectForKey:@"id"]longValue];
-    UIView* viewFinded=[SocketViewController recursiveSearchClickableForView:[CommandFind findViewById:viewID]];
-    [CommandClick tapAccessibilityElement:viewFinded];
-    [CommandKey setText:viewFinded appendValue:@"set up textset up textset up textset up textset up textset up text"];
-//    UIView* view;
-//    UIAccessibilityElement* element;
-//    [UIAccessibilityElement accessibilityElement:&element view:&view withLabel:@"6100" value:nil traits:UIAccessibilityTraitNone tappable:YES error:nil];
-//    [CommandClick tapAccessibilityElement:element inView:view];
-}
-- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message
-{
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title
-                                                     message:message
-                                                    delegate:nil
-                                           cancelButtonTitle:@"Dismiss"
-                                           otherButtonTitles:nil];
-    [alert show];
-}
-
-- (IBAction)connectButtonClick:(id)sender
-{
-    NSString * serverHost = self.serverAddressTextField.text;
-    NSString * serverPort = self.serverPortTextField.text;
-    
-    if (serverHost == nil || [serverHost isEqualToString:@""]) {
-        [self showAlertWithTitle:@"Error" message:@"Server address cann't be empty!"];
-        return;
-    }
-    
-    if (serverPort == nil || [serverPort isEqualToString:@""]) {
-        [self showAlertWithTitle:@"Error" message:@"Server port cann't be empty!"];
-        return;
-    }
-    
-    self.connectButton.enabled = NO;
-    self.receiveTextView.text = @"Connecting to server...";
-    
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", serverHost, serverPort]];
-    if (backgroundThread==nil||!backgroundThread.isExecuting) {
-        
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", kTestHost, kTestPort]];
+    if (backgroundThread==nil||!backgroundThread.isExecuting)
+    {
         backgroundThread = [[NSThread alloc] initWithTarget:self
                                                    selector:@selector(loadDataFromServerWithURL:)
                                                      object:url];
         [backgroundThread start];
     }
+    return TRUE;
 }
 
 - (void)networkFailedWithErrorMessage:(NSString *)message
@@ -128,9 +42,6 @@
     //
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         NSLog(@" >> %@", message);
-        
-        self.receiveTextView.text = message;
-        self.connectButton.enabled = YES;
     }];
 }
 
@@ -138,14 +49,16 @@
 {
     // Update UI
     //
+    ActionProtocol * actionCommand = [[ActionProtocol alloc] init];
+    actionCommand.actionCode = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(0, 4)] bytes]] ;
+    actionCommand.seqNo = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(4, 4)] bytes]] ;
+    actionCommand.result = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(8, 1)] bytes]] ;
+    actionCommand.body = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(9, (data.length-9))] encoding:NSUTF8StringEncoding] ;
     NSString * resultsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//        NSString *resultsString =[ NSString stringWithCString:[data bytes] encoding:NSUTF8StringEncoding];
-//        NSString *resultsString =[[NSString alloc] initWithBytes:[data bytes] length:strlen([data bytes]) encoding:NSUTF8StringEncoding];
-        self.receiveTextView.text = resultsString;
-        NSLog(@" >> Received string: %s", [data bytes]);
-        self.connectButton.enabled = YES;
+        NSLog(@" >> Received string: %@", resultsString);
+        
+        
     }];
 }
 
@@ -179,13 +92,13 @@
 	socketParameters.sin_family = AF_INET;
 	socketParameters.sin_addr = *remoteInAddr;
 	socketParameters.sin_port = htons([port intValue]);
-//    memset(&(socketParameters.sin_zero), 0, 8);
+    //    memset(&(socketParameters.sin_zero), 0, 8);
     
     struct timeval timeout;
     timeout.tv_sec = TIMEOUT;
     timeout.tv_usec = 0;
     setsockopt(socketFileDescriptor,SOL_SOCKET,SO_SNDTIMEO,(char *)&timeout,sizeof(struct timeval));
-//    setsockopt(socketFileDescriptor,SOL_SOCKET,SO_RCVTIMEO,(char *)&timeout,sizeof(struct timeval));
+    //    setsockopt(socketFileDescriptor,SOL_SOCKET,SO_RCVTIMEO,(char *)&timeout,sizeof(struct timeval));
     // Connect the socket
     //
     while (connect(socketFileDescriptor, (struct sockaddr *) &socketParameters, sizeof(socketParameters))==-1) {
@@ -194,7 +107,7 @@
         sleep(10);
     }
     NSLog(@" >> Successfully connected to %@:%@", host, port);
-//    [self listenSocket];
+    //    [self listenSocket];
     
     NSThread * listenerThread = [[NSThread alloc] initWithTarget:self selector:@selector(listenSocket) object:nil];
     [listenerThread start];
@@ -231,7 +144,7 @@
         }
     }else{
         NSLog(@"Failed to sendMessage : socket is closed");
-        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@:%d", kTestHost,kTestPort]];
+        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", kTestHost,kTestPort]];
         [self loadDataFromServerWithURL:url];
     }
 }
@@ -242,12 +155,12 @@
         data = [[NSMutableData alloc] init];
         char* lengthBuffer;
         int result = recv(socketFileDescriptor, &lengthBuffer, 4, 0);
-//        NSMutableData *lengthData = [[NSMutableData alloc] init];
+        //        NSMutableData *lengthData = [[NSMutableData alloc] init];
         if (result==4) {
-//            [lengthData appendBytes:lengthBuffer length:4];
+            //            [lengthData appendBytes:lengthBuffer length:4];
             int totalLength = lengthBuffer[0]<<24|lengthBuffer[1]<<16|lengthBuffer[2]<<8|lengthBuffer[3];
-//            int totalLength = CFSwapInt32BigToHost(*(int*)([lengthData bytes]));
-//            int totalLength = *(int*)lengthBuffer;
+            //            int totalLength = CFSwapInt32BigToHost(*(int*)([lengthData bytes]));
+            //            int totalLength = *(int*)lengthBuffer;
             int currentOffset = 0;
             const char * buffer[1024];
             int length = sizeof(buffer);

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "iOSHierarchyViewer.h"
+#import "AutoDirver.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -35,7 +36,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [iOSHierarchyViewer start]; 
+    [iOSHierarchyViewer start];
+    [[[AutoDirver alloc]init] start];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
