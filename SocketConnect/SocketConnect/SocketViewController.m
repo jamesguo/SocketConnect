@@ -7,9 +7,12 @@
 //
 
 #import "SocketViewController.h"
+#import "UIView-KIFAdditions.h"
 #import <arpa/inet.h>
 #import <netdb.h>
-
+#import "CommandClick.h"
+#import "CommandFind.h"
+#import "CommandKey.h"
 #define kTestHost @"http://172.16.156.234"
 #define kTestPort 6100
 #define TIMEOUT 10
@@ -46,8 +49,41 @@
     self.receiveTextView.text = @"";
     self.receiveTextView.editable = NO;
     [self.connectButton addTarget:self action:@selector(connectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self performSelector:@selector(doIt) withObject:nil afterDelay:5];
+    
+    
 }
-
++ (UIView *)recursiveSearchClickableForView:(UIView *)parent
+{
+    if ([parent isKindOfClass:[UILabel class]]) {
+        return parent;
+    }
+    for (UIView *v in [parent subviews]) {
+        UIView *result = [SocketViewController recursiveSearchClickableForView:v];
+        if (result) {
+            return result;
+        }
+    }
+    return nil;
+}
+- (void)doIt
+{
+    NSMutableArray* resultArray = [[NSMutableArray alloc]init];
+//    [CommandFind getViews:CLASS_NAME TextValue:@"UITextField" Multi:TRUE Result:resultArray];
+//    [CommandFind getViews:NAME TextValue:@"http://172.16.156.234" Multi:TRUE Result:resultArray];
+    [CommandFind getViews:NAME TextValue:@"6100" Multi:TRUE Result:resultArray];
+//    [CommandFind getViews:NAME TextValue:@"Connect" Multi:TRUE Result:resultArray];
+    NSMutableDictionary * viewItem = [resultArray objectAtIndex:0];
+    long viewID = [[viewItem objectForKey:@"id"]longValue];
+    UIView* viewFinded=[SocketViewController recursiveSearchClickableForView:[CommandFind findViewById:viewID]];
+    [CommandClick tapAccessibilityElement:viewFinded];
+    [CommandKey setText:viewFinded appendValue:@"set up textset up textset up textset up textset up textset up text"];
+//    UIView* view;
+//    UIAccessibilityElement* element;
+//    [UIAccessibilityElement accessibilityElement:&element view:&view withLabel:@"6100" value:nil traits:UIAccessibilityTraitNone tappable:YES error:nil];
+//    [CommandClick tapAccessibilityElement:element inView:view];
+}
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message
 {
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title

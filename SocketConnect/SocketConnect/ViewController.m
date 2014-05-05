@@ -6,8 +6,15 @@
 //  Copyright (c) 2014年 yrguo. All rights reserved.
 //
 
+#import <objc/runtime.h>
+#import <objc/NSObject.h>
+#import <UIKit/UIApplication.h>
+#import <math.h>
+#import <QuartzCore/QuartzCore.h>
 #import "ViewController.h"
 #import "TypeSwapUtil.h"
+#import "CommandFind.h"
+#import "CommandClick.h"
 @interface ViewController ()
 {
     NSDictionary * _items;
@@ -20,6 +27,11 @@
 {
     [super viewDidLoad];
     _items = @{@"Socket Demo":@"SocketViewController",
+               @"Socket Demo2":@"",
+               @"Socket Demo3":@"",
+               @"Socket Demo4":@"",
+               @"Socket Demo5":@"",
+               @"Socket Demo6":@"",
                };
     self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, 320, 480) style:UITableViewStylePlain];
     [self.view addSubview:self.mainTableView];
@@ -28,33 +40,24 @@
     
     self.title=@"Demo";
     
-//    int blah = 3840;
-//    unsigned char* pBlah;
-//    [TypeSwapUtil SwapIntToBytes:blah:pBlah];
-//    printf("Default\n");
-//    printf("%d\n", pBlah [0]);
-//    printf("%d\n", pBlah [1]);
-//    printf("%d\n", pBlah [2]);
-//    printf("%d\n", pBlah [3]);
-//    
-//    
-//    
-//    int result = [TypeSwapUtil SwapBytesToInt:pBlah];
-//    printf("result:%d\n", result);
-//    
-//    char bytes[4];
-//    bytes[0] = (blah >> 24) & 0xFF;
-//    bytes[1] = (blah >> 16) & 0xFF;
-//    bytes[2] = (blah >> 8) & 0xFF;
-//    bytes[3] = blah & 0xFF;
-//    printf("Second\n");
-//    printf("%d\n", bytes [0]);
-//    printf("%d\n", bytes [1]);
-//    printf("%d\n", bytes [2]);
-//    printf("%d\n", bytes [3]);
-//    result = [TypeSwapUtil SwapBytesToInt:bytes];
-//    printf("result:%d\n", result);
     
+//    [self performSelector:@selector(doIt) withObject:nil afterDelay:5];
+    
+
+    
+}
+-(void)doIt
+{
+//    UIView* view;
+//    UIAccessibilityElement* element;
+//    [UIAccessibilityElement accessibilityElement:&element view:&view withLabel:@"Socket Demo5" value:nil traits:UIAccessibilityTraitNone tappable:YES error:nil];
+//    [CommandClick tapAccessibilityElement:element inView:view];
+//    NSMutableArray* resultArray = [[NSMutableArray alloc]init];
+//    [CommandFind getViews:NAME TextValue:@"Socket Demo" Multi:TRUE Result:resultArray];
+//    NSMutableDictionary * viewItem = [resultArray objectAtIndex:0];
+//    long viewID = [[viewItem objectForKey:@"id"]longValue];
+//    UIView* view=[CommandFind findViewById:viewID];
+//    [CommandClick tapAccessibilityElement:view];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,6 +66,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -92,6 +98,8 @@
     NSString * key = [self keyInDictionary:_items atIndex:indexPath.row];
     cell.textLabel.text = key;
     return cell;
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,7 +111,22 @@
     if (controllerClass != nil) {
         id controller = [[controllerClass alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
+    }else{
+        NSMutableArray* resultArray = [[NSMutableArray alloc]init];
+        [CommandFind getViews:NAME TextValue:@"Socket Demo" Multi:TRUE Result:resultArray];
+        NSMutableDictionary * viewItem = [resultArray objectAtIndex:0];
+        long viewID = [[viewItem objectForKey:@"id"]longValue];
+//        UIView* view=[CommandFind findViewById:viewID];
+        UIView* view;
+        UIAccessibilityElement* element;
+        [UIAccessibilityElement accessibilityElement:&element view:&view withLabel:@"Socket Demo" value:nil traits:UIAccessibilityTraitNone tappable:YES error:nil];
+        [CommandClick tapAccessibilityElement:element inView:view];
+//        if (view)
+//        {
+//            
+//        }
     }
 }
+
 
 @end
