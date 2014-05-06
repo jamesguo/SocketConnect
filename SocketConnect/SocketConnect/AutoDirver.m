@@ -6,11 +6,18 @@
 //  Copyright (c) 2014年 yrguo. All rights reserved.
 //
 
+#import <arpa/inet.h>
+#import <netdb.h>
+
 #import "AutoDirver.h"
 #import "ActionProtocol.h"
 #import "TypeSwapUtil.h"
-#import <arpa/inet.h>
-#import <netdb.h>
+#import "CommandFind.h"
+#import "CommandDeviceInfo.h"
+#import "CommandClick.h"
+#import "CommandKey.h"
+#import "CommandScreenShot.h"
+
 
 #define kTestHost @"http://172.16.156.234"
 #define kTestPort @"6100"
@@ -50,18 +57,52 @@
     // Update UI
     //
     ActionProtocol * actionCommand = [[ActionProtocol alloc] init];
-    actionCommand.actionCode = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(0, 4)] bytes]] ;
+    actionCommand.actionCode = (ActionProtocolActionType)[TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(0, 4)] bytes]] ;
     actionCommand.seqNo = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(4, 4)] bytes]] ;
     actionCommand.result = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(8, 1)] bytes]] ;
     actionCommand.body = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(9, (data.length-9))] encoding:NSUTF8StringEncoding] ;
-    NSString * resultsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        NSLog(@" >> Received string: %@", resultsString);
-        
-        
+        [self excutorCommand:actionCommand];
     }];
 }
-
+- (void) excutorCommand:(ActionProtocol *)actionCommand{
+    ActionProtocol * reponseCommand;
+    switch (actionCommand.actionCode) {
+        case FINDVIEW:
+        {
+            CommandFind * findCommand = [[CommandFind alloc]init];
+            [findCommand excute:actionCommand ActionResult:reponseCommand];
+            break;
+        }
+        case CLICK:
+        {
+            CommandClick * clickCommand = [[CommandClick alloc]init];
+            [clickCommand excute:actionCommand ActionResult:reponseCommand];
+            break;
+        }
+        case SCREENSHOT:
+        {
+            CommandScreenShot * command = [[CommandScreenShot alloc]init];
+            [command excute:actionCommand ActionResult:reponseCommand];
+            break;
+        }
+        case DEVICEINFO:
+        {
+            CommandDeviceInfo * command = [[CommandDeviceInfo alloc]init];
+            [command excute:actionCommand ActionResult:reponseCommand];
+            break;
+        }
+        case PRESSKEY:
+        {
+            CommandKey * command = [[CommandKey alloc]init];
+            [command excute:actionCommand ActionResult:reponseCommand];
+            break;
+        }
+        default:
+            break;
+    }
+}
 - (void)loadDataFromServerWithURL:(NSURL *)url
 {
     NSString * host = [url host];
