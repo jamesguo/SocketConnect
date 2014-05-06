@@ -57,17 +57,17 @@
     // Update UI
     //
     ActionProtocol * actionCommand = [[ActionProtocol alloc] init];
-    actionCommand.actionCode = (ActionProtocolActionType)[TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(0, 4)] bytes]] ;
-    actionCommand.result = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(4, 1)] bytes]] ;
-    actionCommand.seqNo = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(5, 4)] bytes]] ;
-    actionCommand.body = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(9, (data.length-9))] encoding:NSUTF8StringEncoding] ;
-
+    NSDictionary* messageJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    actionCommand.actionCode = [[messageJSON objectForKey:@"actionCode"]integerValue];
+    actionCommand.seqNo = [[messageJSON objectForKey:@"seqNo"]integerValue];
+    actionCommand.result = [[messageJSON objectForKey:@"result"]integerValue];
+    actionCommand.body = [messageJSON objectForKey:@"body"];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self excutorCommand:actionCommand];
     }];
 }
 - (void) excutorCommand:(ActionProtocol *)actionCommand{
-    ActionProtocol * reponseCommand;
+    ActionProtocol * reponseCommand = [[ActionProtocol alloc]init];
     switch (actionCommand.actionCode) {
         case FINDVIEW:
         {
@@ -156,22 +156,28 @@
     NSThread * listenerThread = [[NSThread alloc] initWithTarget:self selector:@selector(listenSocket) object:nil];
     [listenerThread start];
     sleep(3);
-    char heartbeat[20] = "hello server";
-    [self sendMessage:heartbeat];
+//    char heartbeat[20] = "hello server";
+//    [self sendMessage:heartbeat];
+    
 }
--(void)sendMessage:(unsigned char *)data
+-(void)sendMessage:(char[])data
 {
     NSMutableData * multData = [[NSMutableData alloc] init];
     int total  = 4+strlen(data);
     unsigned char bytes[4];
+    unsigned char size[4];
     unsigned long n = strlen(data);
-    bytes[0] = (n >> 24) & 0xFF;
-    bytes[1] = (n >> 16) & 0xFF;
-    bytes[2] = (n >> 8) & 0xFF;
-    bytes[3] = n & 0xFF;
+    [TypeSwapUtil SwapIntToBytes:n Result:bytes];
+    
+    size[0] = (n >> 24) & 0xFF;
+    size[1] = (n >> 16) & 0xFF;
+    size[2] = (n >> 8) & 0xFF;
+    size[3] = n & 0xFF;
+    
     [multData appendBytes:bytes length:4];
     [multData appendBytes:data length:strlen(data)];
     
+    NSLog(@"[%s]",multData.bytes);
     
     if(socketFileDescriptor!=-1){
         int result = send(socketFileDescriptor, multData.bytes, total, 0);
@@ -197,13 +203,13 @@
     NSMutableData * data ;
     while (1) {
         data = [[NSMutableData alloc] init];
-        char* lengthBuffer;
-        int result = recv(socketFileDescriptor, &lengthBuffer, 4, 0);
-        //        NSMutableData *lengthData = [[NSMutableData alloc] init];
+        char lengthBuffer[4];
+        int result = recv(socketFileDescriptor, lengthBuffer, 4, 0);
         if (result==4) {
-            //            [lengthData appendBytes:lengthBuffer length:4];
-            int totalLength = lengthBuffer[0]<<24|lengthBuffer[1]<<16|lengthBuffer[2]<<8|lengthBuffer[3];
-            //            int totalLength = CFSwapInt32BigToHost(*(int*)([lengthData bytes]));
+//           [lengthData appendBytes:lengthBuffer length:4];
+            int totalLength = [TypeSwapUtil SwapBytesToInt:lengthBuffer];
+//            int totalLength = lengthBuffer[0]<<24|lengthBuffer[1]<<16|lengthBuffer[2]<<8|lengthBuffer[3];
+//            int totalLength = CFSwapInt32BigToHost(*(int*)([lengthData bytes]));
             //            int totalLength = *(int*)lengthBuffer;
             int currentOffset = 0;
             const char * buffer[1024];

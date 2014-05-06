@@ -18,7 +18,6 @@
 -(void) excute:(ActionProtocol*)requestCommand ActionResult:(ActionProtocol*)responseCommand{
     NSDictionary* params = requestCommand.params;
     int findType = [[params objectForKey:@"findType"] integerValue];
-    NSString * contextID = [params objectForKey:@"context"];
     NSString * value = [params objectForKey:@"value"];
     _Bool multiple = [params objectForKey:@"multiple"];
     
@@ -29,7 +28,14 @@
         responseCommand.actionCode = requestCommand.actionCode;
         responseCommand.seqNo = requestCommand.seqNo;
         responseCommand.result = (unsigned char) 0;
-        responseCommand.body = [resultArray JSONString];
+        NSMutableDictionary* dirction = [[NSMutableDictionary alloc]init];
+        NSData* jsonData =[NSJSONSerialization dataWithJSONObject:resultArray options:NSJSONWritingPrettyPrinted error:Nil];
+        NSString* elementsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        [dirction setObject:elementsString forKey:@"elements"];
+        
+        NSData* resultJson =[NSJSONSerialization dataWithJSONObject:dirction options:NSJSONWritingPrettyPrinted error:Nil];
+        responseCommand.body = [[NSString alloc] initWithData:resultJson encoding:NSUTF8StringEncoding] ;
+//        responseCommand.body = [resultArray JSONString];
     }else{
         responseCommand.actionCode = requestCommand.actionCode;
         responseCommand.seqNo = requestCommand.seqNo;

@@ -25,9 +25,9 @@
         responseCommand.actionCode = requestCommand.actionCode;
         responseCommand.seqNo = requestCommand.seqNo;
         responseCommand.result = (unsigned char) 0;
-        NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
-        [resultInfo setObject:@"success" forKey:@"value"];
-        responseCommand.body = [resultInfo JSONString];
+        NSData* jsonData =[NSJSONSerialization dataWithJSONObject:deviceInfo options:NSJSONWritingPrettyPrinted error:Nil];
+        responseCommand.body = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] ;
+//        responseCommand.body = [resultInfo JSONString];
 //    }else{
 //        responseCommand.actionCode = requestCommand.actionCode;
 //        responseCommand.seqNo = requestCommand.seqNo;

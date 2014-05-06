@@ -21,24 +21,20 @@
 	return self;
 }
 -(NSDictionary*)params{
-    NSDictionary* json = [self.body objectFromJSONString];
-    NSString* paramString = (NSString *)[json objectForKey:@"params"];
-    return [paramString objectFromJSONString];
+    NSData* data = [self.body dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* bodyJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    NSString* paramString = (NSString *)[bodyJSON objectForKey:@"params"];
+    NSData* paramsData = [paramString dataUsingEncoding:NSUTF8StringEncoding];
+    return [NSJSONSerialization JSONObjectWithData:paramsData options:NSJSONReadingMutableLeaves error:nil];
 }
-- (unsigned char *)toBytes{
-    NSMutableData * data = [[NSMutableData alloc]init];
-    unsigned char* self_ActionCode = NULL ;
-    [TypeSwapUtil SwapIntToBytes:self.actionCode Result:self_ActionCode];
-    unsigned char* self_seqNo = NULL;
-    [TypeSwapUtil SwapIntToBytes:self.actionCode Result:self_seqNo];
-    
-    unsigned char* self_result = NULL;
-    self_result[0] = self.result;
-    [data appendBytes:self_ActionCode length:4];
-    [data appendBytes:self_result length:1];
-    [data appendBytes:self_seqNo length:4];
-    [data appendData:[self.body dataUsingEncoding: NSUTF8StringEncoding]];
-    return (unsigned char *)[data bytes];
-    
+- (char *)toBytes{
+    NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
+    [resultInfo setObject:[NSNumber numberWithInt:self.actionCode] forKey:@"actionCode"];
+    [resultInfo setObject:[NSNumber numberWithInt:self.seqNo] forKey:@"seqNo"];
+    [resultInfo setObject:[NSNumber numberWithInt:self.result] forKey:@"result"];
+    [resultInfo setObject:self.body forKey:@"body"];
+    NSData* jsonData =[NSJSONSerialization dataWithJSONObject:resultInfo options:NSJSONWritingPrettyPrinted error:Nil];
+    NSString* result = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] ;
+    return (char *)[result UTF8String];
 }
 @end

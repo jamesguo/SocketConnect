@@ -12,14 +12,30 @@
     NSDictionary* params = requestCommand.params;
     long elementID = [[params objectForKey:@"elementId"] longValue];
     NSString* value = [params objectForKey:@"text"];
-    UIView* view = [CommandFind findViewById:elementID];
+//    UIView* view = [CommandFind findViewById:elementID];
+    UIView* view=[CommandKey recursiveSearchClickableForView:[CommandFind findViewById:elementID]];
+    [CommandClick tapAccessibilityElement:view];
     [CommandKey setText:view appendValue:value];
     responseCommand.actionCode = requestCommand.actionCode;
     responseCommand.seqNo = requestCommand.seqNo;
     responseCommand.result = (unsigned char) 0;
     NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
     [resultInfo setObject:@"success" forKey:@"value"];
-    responseCommand.body = [resultInfo JSONString];
+    NSData* jsonData =[NSJSONSerialization dataWithJSONObject:resultInfo options:NSJSONWritingPrettyPrinted error:Nil];
+    responseCommand.body = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] ;
+}
++ (UIView *)recursiveSearchClickableForView:(UIView *)parent
+{
+    if ([parent isKindOfClass:[UILabel class]]) {
+        return parent;
+    }
+    for (UIView *v in [parent subviews]) {
+        UIView *result = [CommandKey recursiveSearchClickableForView:v];
+        if (result) {
+            return result;
+        }
+    }
+    return nil;
 }
 +(void)setText:(UIView*) view appendValue:(NSString*)text
 {

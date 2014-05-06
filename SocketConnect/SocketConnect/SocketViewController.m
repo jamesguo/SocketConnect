@@ -70,9 +70,9 @@
 - (void)doIt
 {
     NSMutableArray* resultArray = [[NSMutableArray alloc]init];
-//    [CommandFind getViews:CLASS_NAME TextValue:@"UITextField" Multi:TRUE Result:resultArray];
+    [CommandFind getViews:CLASS_NAME TextValue:@"UITextField" Multi:TRUE Result:resultArray];
 //    [CommandFind getViews:NAME TextValue:@"http://172.16.156.234" Multi:TRUE Result:resultArray];
-    [CommandFind getViews:NAME TextValue:@"6100" Multi:TRUE Result:resultArray];
+//    [CommandFind getViews:NAME TextValue:@"6100" Multi:TRUE Result:resultArray];
 //    [CommandFind getViews:NAME TextValue:@"Connect" Multi:TRUE Result:resultArray];
     NSMutableDictionary * viewItem = [resultArray objectAtIndex:0];
     long viewID = [[viewItem objectForKey:@"id"]longValue];
@@ -240,8 +240,10 @@
     NSMutableData * data ;
     while (1) {
         data = [[NSMutableData alloc] init];
-        char* lengthBuffer;
-        int result = recv(socketFileDescriptor, &lengthBuffer, 4, 0);
+        char lengthBuffer[4];
+        //char *lengthBuffer;
+        
+        int result = recv(socketFileDescriptor, &lengthBuffer[0], 4, 0);
 //        NSMutableData *lengthData = [[NSMutableData alloc] init];
         if (result==4) {
 //            [lengthData appendBytes:lengthBuffer length:4];

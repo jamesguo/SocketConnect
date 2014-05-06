@@ -31,5 +31,5 @@ typedef enum {
 @property int seqNo;
 @property NSString * body;
 - (NSDictionary *)params;
-- (unsigned char *)toBytes;
+- (char *)toBytes;
 @end
