@@ -29,8 +29,8 @@
 + (void)tapAccessibilityElement:(UIView *)view
 {
     CGPoint tappablePointInElement ;
-    tappablePointInElement.x = view.frame.size.width/2+view.frame.origin.x;
-    tappablePointInElement.y = view.frame.size.height/2+view.frame.origin.y;
+    tappablePointInElement.x = view.frame.size.width/2;
+    tappablePointInElement.y = view.frame.size.height/2;
     [view tapAtPoint:tappablePointInElement];
     
 }

@@ -14,8 +14,10 @@
     NSString* value = [params objectForKey:@"text"];
 //    UIView* view = [CommandFind findViewById:elementID];
     UIView* view=[CommandKey recursiveSearchClickableForView:[CommandFind findViewById:elementID]];
-    [CommandClick tapAccessibilityElement:view];
-    [CommandKey setText:view appendValue:value];
+//    [CommandClick tapAccessibilityElement:view];
+//    [CommandKey setText:view appendValue:@"set"];
+    [self performSelector:@selector(doIt:) withObject:view afterDelay:0.5];
+
     responseCommand.actionCode = requestCommand.actionCode;
     responseCommand.seqNo = requestCommand.seqNo;
     responseCommand.result = (unsigned char) 0;
@@ -23,6 +25,11 @@
     [resultInfo setObject:@"success" forKey:@"value"];
     NSData* jsonData =[NSJSONSerialization dataWithJSONObject:resultInfo options:NSJSONWritingPrettyPrinted error:Nil];
     responseCommand.body = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] ;
+}
+-(void)doIt:(UIView*)view
+{
+    [CommandClick tapAccessibilityElement:view];
+    [CommandKey setText:view appendValue:@"set"];
 }
 + (UIView *)recursiveSearchClickableForView:(UIView *)parent
 {
@@ -44,7 +51,7 @@
         
         for (NSUInteger characterIndex = 0; characterIndex < [text length]; characterIndex++) {
             NSString *characterString = [text substringWithRange:NSMakeRange(characterIndex, 1)];
-            
+
             UIResponder *firstResponder = [[[UIApplication sharedApplication] keyWindow] firstResponder];
             if ([firstResponder isKindOfClass:[UIView class]]) {
                 view = (UIView *)firstResponder;
