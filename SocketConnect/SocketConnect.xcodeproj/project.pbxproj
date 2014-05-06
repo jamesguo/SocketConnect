@@ -129,6 +129,7 @@
 		C8667B9D19187873003D44CF /* UIView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView-KIFAdditions.m"; sourceTree = "<group>"; };
 		C8667B9E19187873003D44CF /* UIWindow-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow-KIFAdditions.h"; sourceTree = "<group>"; };
 		C8667B9F19187873003D44CF /* UIWindow-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow-KIFAdditions.m"; sourceTree = "<group>"; };
+		C8667BA919187F34003D44CF /* LoadableCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableCategory.h; sourceTree = "<group>"; };
 		C8B7DC4E19109A500093FEDC /* SocketConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7DC5119109A500093FEDC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C8B7DC5319109A500093FEDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -246,6 +247,7 @@
 		C8667B8D19187873003D44CF /* Addition */ = {
 			isa = PBXGroup;
 			children = (
+				C8667BA919187F34003D44CF /* LoadableCategory.h */,
 				C8667B8E19187873003D44CF /* CGGeometry-KIFAdditions.h */,
 				C8667B8F19187873003D44CF /* CGGeometry-KIFAdditions.m */,
 				C8667B9019187873003D44CF /* NSFileManager-KIFAdditions.h */,

@@ -27,8 +27,9 @@ typedef enum {
 @interface ActionProtocol : NSObject
 
 @property int actionCode;
-@property int seqNo;
 @property unsigned char result;
+@property int seqNo;
 @property NSString * body;
 - (NSDictionary *)params;
+- (unsigned char *)toBytes;
 @end

@@ -14,6 +14,12 @@
     NSString* value = [params objectForKey:@"text"];
     UIView* view = [CommandFind findViewById:elementID];
     [CommandKey setText:view appendValue:value];
+    responseCommand.actionCode = requestCommand.actionCode;
+    responseCommand.seqNo = requestCommand.seqNo;
+    responseCommand.result = (unsigned char) 0;
+    NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
+    [resultInfo setObject:@"success" forKey:@"value"];
+    responseCommand.body = [resultInfo JSONString];
 }
 +(void)setText:(UIView*) view appendValue:(NSString*)text
 {

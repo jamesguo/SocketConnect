@@ -58,8 +58,8 @@
     //
     ActionProtocol * actionCommand = [[ActionProtocol alloc] init];
     actionCommand.actionCode = (ActionProtocolActionType)[TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(0, 4)] bytes]] ;
-    actionCommand.seqNo = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(4, 4)] bytes]] ;
-    actionCommand.result = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(8, 1)] bytes]] ;
+    actionCommand.result = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(4, 1)] bytes]] ;
+    actionCommand.seqNo = [TypeSwapUtil SwapBytesToInt:(unsigned char*)[[data subdataWithRange:NSMakeRange(5, 4)] bytes]] ;
     actionCommand.body = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(9, (data.length-9))] encoding:NSUTF8StringEncoding] ;
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -101,6 +101,9 @@
         }
         default:
             break;
+    }
+    if (reponseCommand) {
+        [self sendMessage:[reponseCommand toBytes]];
     }
 }
 - (void)loadDataFromServerWithURL:(NSURL *)url
@@ -156,7 +159,7 @@
     char heartbeat[20] = "hello server";
     [self sendMessage:heartbeat];
 }
--(void)sendMessage:(char *)data
+-(void)sendMessage:(unsigned char *)data
 {
     NSMutableData * multData = [[NSMutableData alloc] init];
     int total  = 4+strlen(data);

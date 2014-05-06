@@ -19,6 +19,12 @@
     {
         [CommandClick tapAccessibilityElement:view];
     }
+    responseCommand.actionCode = requestCommand.actionCode;
+    responseCommand.seqNo = requestCommand.seqNo;
+    responseCommand.result = (unsigned char) 0;
+    NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
+    [resultInfo setObject:@"success" forKey:@"value"];
+    responseCommand.body = [resultInfo JSONString];
 }
 + (void)tapAccessibilityElement:(UIView *)view
 {

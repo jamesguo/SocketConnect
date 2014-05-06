@@ -10,7 +10,7 @@
 
 @implementation TypeSwapUtil
 
-+ (void) SwapIntToBytes:(int)value :(unsigned char *)bytes
++ (void) SwapIntToBytes:(int)value Result:(unsigned char *)bytes
 {
     bytes[0] = (value >> 24) & 0xFF;
     bytes[1] = (value >> 16) & 0xFF;

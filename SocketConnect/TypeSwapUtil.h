@@ -10,6 +10,6 @@
 
 @interface TypeSwapUtil : NSObject
 
-+ (void)  SwapIntToBytes:(int)value:(unsigned char *)bytes;
++ (void)  SwapIntToBytes:(int)value  Result:(unsigned char *)bytes;
 + (int)  SwapBytesToInt:(unsigned char*)bytes;
 @end
