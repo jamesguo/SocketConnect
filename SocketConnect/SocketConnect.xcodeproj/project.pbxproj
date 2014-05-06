@@ -11,6 +11,30 @@
 		1AAE171A1912809D00827139 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAE17191912809D00827139 /* QuartzCore.framework */; };
 		C8667AE419177363003D44CF /* CommandKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667AE319177363003D44CF /* CommandKey.m */; };
 		C8667B5A1917855A003D44CF /* AutoDirver.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B591917855A003D44CF /* AutoDirver.m */; };
+		C8667B7E191877D0003D44CF /* HVBase64StaticFile.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B5E191877D0003D44CF /* HVBase64StaticFile.m */; };
+		C8667B7F191877D0003D44CF /* HVCoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B60191877D0003D44CF /* HVCoreDataHandler.m */; };
+		C8667B80191877D0003D44CF /* HVHierarchyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B62191877D0003D44CF /* HVHierarchyHandler.m */; };
+		C8667B81191877D0003D44CF /* HVPreviewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B64191877D0003D44CF /* HVPreviewHandler.m */; };
+		C8667B82191877D0003D44CF /* HVPropertyEditorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B66191877D0003D44CF /* HVPropertyEditorHandler.m */; };
+		C8667B83191877D0003D44CF /* HVStaticFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B68191877D0003D44CF /* HVStaticFileHandler.m */; };
+		C8667B84191877D0003D44CF /* HVBaseRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B6A191877D0003D44CF /* HVBaseRequestHandler.m */; };
+		C8667B85191877D0003D44CF /* HVHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B6C191877D0003D44CF /* HVHTTPServer.m */; };
+		C8667B86191877D0003D44CF /* HVHierarchyScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B6F191877D0003D44CF /* HVHierarchyScanner.m */; };
+		C8667B87191877D0003D44CF /* iOSHierarchyViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B72191877D0003D44CF /* iOSHierarchyViewer.m */; };
+		C8667B88191877D0003D44CF /* index_core.html in Resources */ = {isa = PBXBuildFile; fileRef = C8667B74191877D0003D44CF /* index_core.html */; };
+		C8667B89191877D0003D44CF /* index_ui.html in Resources */ = {isa = PBXBuildFile; fileRef = C8667B75191877D0003D44CF /* index_ui.html */; };
+		C8667B8A191877D0003D44CF /* jquery.js in Sources */ = {isa = PBXBuildFile; fileRef = C8667B76191877D0003D44CF /* jquery.js */; };
+		C8667B8B191877D0003D44CF /* navbar.js in Sources */ = {isa = PBXBuildFile; fileRef = C8667B77191877D0003D44CF /* navbar.js */; };
+		C8667B8C191877D0003D44CF /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = C8667B78191877D0003D44CF /* style.css */; };
+		C8667BA019187873003D44CF /* CGGeometry-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B8F19187873003D44CF /* CGGeometry-KIFAdditions.m */; };
+		C8667BA119187873003D44CF /* NSFileManager-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B9119187873003D44CF /* NSFileManager-KIFAdditions.m */; };
+		C8667BA219187873003D44CF /* UIAccessibilityElement-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B9319187873003D44CF /* UIAccessibilityElement-KIFAdditions.m */; };
+		C8667BA319187873003D44CF /* UIApplication-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B9519187873003D44CF /* UIApplication-KIFAdditions.m */; };
+		C8667BA419187873003D44CF /* UIScrollView-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B9719187873003D44CF /* UIScrollView-KIFAdditions.m */; };
+		C8667BA519187873003D44CF /* UITableView-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B9919187873003D44CF /* UITableView-KIFAdditions.m */; };
+		C8667BA619187873003D44CF /* UITouch-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B9B19187873003D44CF /* UITouch-KIFAdditions.m */; };
+		C8667BA719187873003D44CF /* UIView-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B9D19187873003D44CF /* UIView-KIFAdditions.m */; };
+		C8667BA819187873003D44CF /* UIWindow-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667B9F19187873003D44CF /* UIWindow-KIFAdditions.m */; };
 		C8B7DC5219109A500093FEDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5119109A500093FEDC /* Foundation.framework */; };
 		C8B7DC5419109A500093FEDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5319109A500093FEDC /* CoreGraphics.framework */; };
 		C8B7DC5619109A500093FEDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5519109A500093FEDC /* UIKit.framework */; };
@@ -28,21 +52,6 @@
 		C8B7DC941910AB8F0093FEDC /* SocketViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8B7DC931910AB8F0093FEDC /* SocketViewController.xib */; };
 		C8B7DC971910BE410093FEDC /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8B7DC951910BE410093FEDC /* Main_iPad.storyboard */; };
 		C8B7DC981910BE410093FEDC /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8B7DC961910BE410093FEDC /* Main_iPhone.storyboard */; };
-		C8C895F61915D82F000D50D8 /* HVBase64StaticFile.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C895981915D82F000D50D8 /* HVBase64StaticFile.m */; };
-		C8C895F71915D82F000D50D8 /* HVCoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8959A1915D82F000D50D8 /* HVCoreDataHandler.m */; };
-		C8C895F81915D82F000D50D8 /* HVHierarchyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8959C1915D82F000D50D8 /* HVHierarchyHandler.m */; };
-		C8C895F91915D82F000D50D8 /* HVPreviewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8959E1915D82F000D50D8 /* HVPreviewHandler.m */; };
-		C8C895FA1915D82F000D50D8 /* HVPropertyEditorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C895A01915D82F000D50D8 /* HVPropertyEditorHandler.m */; };
-		C8C895FB1915D82F000D50D8 /* HVStaticFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C895A21915D82F000D50D8 /* HVStaticFileHandler.m */; };
-		C8C895FC1915D82F000D50D8 /* HVBaseRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C895A41915D82F000D50D8 /* HVBaseRequestHandler.m */; };
-		C8C895FD1915D82F000D50D8 /* HVHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C895A61915D82F000D50D8 /* HVHTTPServer.m */; };
-		C8C895FE1915D82F000D50D8 /* HVHierarchyScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C895A91915D82F000D50D8 /* HVHierarchyScanner.m */; };
-		C8C895FF1915D82F000D50D8 /* iOSHierarchyViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C895AC1915D82F000D50D8 /* iOSHierarchyViewer.m */; };
-		C8C896001915D82F000D50D8 /* index_core.html in Resources */ = {isa = PBXBuildFile; fileRef = C8C895AE1915D82F000D50D8 /* index_core.html */; };
-		C8C896011915D82F000D50D8 /* index_ui.html in Resources */ = {isa = PBXBuildFile; fileRef = C8C895AF1915D82F000D50D8 /* index_ui.html */; };
-		C8C896021915D82F000D50D8 /* jquery.js in Sources */ = {isa = PBXBuildFile; fileRef = C8C895B01915D82F000D50D8 /* jquery.js */; };
-		C8C896031915D82F000D50D8 /* navbar.js in Sources */ = {isa = PBXBuildFile; fileRef = C8C895B11915D82F000D50D8 /* navbar.js */; };
-		C8C896041915D82F000D50D8 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = C8C895B21915D82F000D50D8 /* style.css */; };
 		C8C8963119160072000D50D8 /* BaseCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8963019160072000D50D8 /* BaseCommand.m */; };
 		C8C8963A1916069E000D50D8 /* ActionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C896391916069E000D50D8 /* ActionProtocol.m */; };
 		C8C8963F19160BCF000D50D8 /* CommandFind.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8963E19160BCF000D50D8 /* CommandFind.m */; };
@@ -50,15 +59,6 @@
 		C8C89646191631F9000D50D8 /* CommandDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C89645191631F9000D50D8 /* CommandDeviceInfo.m */; };
 		C8C8964919163513000D50D8 /* CommandScreenShot.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8964819163513000D50D8 /* CommandScreenShot.m */; };
 		C8C8964C19163747000D50D8 /* CommandClick.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8964B19163747000D50D8 /* CommandClick.m */; };
-		C8C896881917287A000D50D8 /* CGGeometry-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8966D1917287A000D50D8 /* CGGeometry-KIFAdditions.m */; };
-		C8C896891917287A000D50D8 /* NSFileManager-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8966F1917287A000D50D8 /* NSFileManager-KIFAdditions.m */; };
-		C8C8968A1917287A000D50D8 /* UIAccessibilityElement-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C896711917287A000D50D8 /* UIAccessibilityElement-KIFAdditions.m */; };
-		C8C8968B1917287A000D50D8 /* UIApplication-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C896731917287A000D50D8 /* UIApplication-KIFAdditions.m */; };
-		C8C8968C1917287A000D50D8 /* UIScrollView-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C896751917287A000D50D8 /* UIScrollView-KIFAdditions.m */; };
-		C8C8968D1917287A000D50D8 /* UITouch-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C896771917287A000D50D8 /* UITouch-KIFAdditions.m */; };
-		C8C8968E1917287A000D50D8 /* UIView-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C896791917287A000D50D8 /* UIView-KIFAdditions.m */; };
-		C8C8968F1917287A000D50D8 /* UIWindow-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8967B1917287A000D50D8 /* UIWindow-KIFAdditions.m */; };
-		C8C896901917287A000D50D8 /* UITableView-KIFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8967D1917287A000D50D8 /* UITableView-KIFAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +79,56 @@
 		C8667AE319177363003D44CF /* CommandKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandKey.m; sourceTree = "<group>"; };
 		C8667B581917855A003D44CF /* AutoDirver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoDirver.h; sourceTree = "<group>"; };
 		C8667B591917855A003D44CF /* AutoDirver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoDirver.m; sourceTree = "<group>"; };
+		C8667B5D191877D0003D44CF /* HVBase64StaticFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVBase64StaticFile.h; sourceTree = "<group>"; };
+		C8667B5E191877D0003D44CF /* HVBase64StaticFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVBase64StaticFile.m; sourceTree = "<group>"; };
+		C8667B5F191877D0003D44CF /* HVCoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVCoreDataHandler.h; sourceTree = "<group>"; };
+		C8667B60191877D0003D44CF /* HVCoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVCoreDataHandler.m; sourceTree = "<group>"; };
+		C8667B61191877D0003D44CF /* HVHierarchyHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVHierarchyHandler.h; sourceTree = "<group>"; };
+		C8667B62191877D0003D44CF /* HVHierarchyHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVHierarchyHandler.m; sourceTree = "<group>"; };
+		C8667B63191877D0003D44CF /* HVPreviewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVPreviewHandler.h; sourceTree = "<group>"; };
+		C8667B64191877D0003D44CF /* HVPreviewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVPreviewHandler.m; sourceTree = "<group>"; };
+		C8667B65191877D0003D44CF /* HVPropertyEditorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVPropertyEditorHandler.h; sourceTree = "<group>"; };
+		C8667B66191877D0003D44CF /* HVPropertyEditorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVPropertyEditorHandler.m; sourceTree = "<group>"; };
+		C8667B67191877D0003D44CF /* HVStaticFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVStaticFileHandler.h; sourceTree = "<group>"; };
+		C8667B68191877D0003D44CF /* HVStaticFileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVStaticFileHandler.m; sourceTree = "<group>"; };
+		C8667B69191877D0003D44CF /* HVBaseRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVBaseRequestHandler.h; sourceTree = "<group>"; };
+		C8667B6A191877D0003D44CF /* HVBaseRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVBaseRequestHandler.m; sourceTree = "<group>"; };
+		C8667B6B191877D0003D44CF /* HVHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVHTTPServer.h; sourceTree = "<group>"; };
+		C8667B6C191877D0003D44CF /* HVHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVHTTPServer.m; sourceTree = "<group>"; };
+		C8667B6D191877D0003D44CF /* HVDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HVDefines.h; path = iOSViewHierarchy/HVDefines.h; sourceTree = "<group>"; };
+		C8667B6E191877D0003D44CF /* HVHierarchyScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HVHierarchyScanner.h; path = iOSViewHierarchy/HVHierarchyScanner.h; sourceTree = "<group>"; };
+		C8667B6F191877D0003D44CF /* HVHierarchyScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HVHierarchyScanner.m; path = iOSViewHierarchy/HVHierarchyScanner.m; sourceTree = "<group>"; };
+		C8667B70191877D0003D44CF /* iOSHierarchyViewer-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "iOSHierarchyViewer-Prefix.pch"; path = "iOSViewHierarchy/iOSHierarchyViewer-Prefix.pch"; sourceTree = "<group>"; };
+		C8667B71191877D0003D44CF /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSHierarchyViewer.h; path = iOSViewHierarchy/iOSHierarchyViewer.h; sourceTree = "<group>"; };
+		C8667B72191877D0003D44CF /* iOSHierarchyViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSHierarchyViewer.m; path = iOSViewHierarchy/iOSHierarchyViewer.m; sourceTree = "<group>"; };
+		C8667B74191877D0003D44CF /* index_core.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index_core.html; sourceTree = "<group>"; };
+		C8667B75191877D0003D44CF /* index_ui.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index_ui.html; sourceTree = "<group>"; };
+		C8667B76191877D0003D44CF /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.js; sourceTree = "<group>"; };
+		C8667B77191877D0003D44CF /* navbar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = navbar.js; sourceTree = "<group>"; };
+		C8667B78191877D0003D44CF /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		C8667B79191877D0003D44CF /* webapp_index_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_index_core.h; sourceTree = "<group>"; };
+		C8667B7A191877D0003D44CF /* webapp_index_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_index_ui.h; sourceTree = "<group>"; };
+		C8667B7B191877D0003D44CF /* webapp_jquery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_jquery.h; sourceTree = "<group>"; };
+		C8667B7C191877D0003D44CF /* webapp_navbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_navbar.h; sourceTree = "<group>"; };
+		C8667B7D191877D0003D44CF /* webapp_style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_style.h; sourceTree = "<group>"; };
+		C8667B8E19187873003D44CF /* CGGeometry-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry-KIFAdditions.h"; sourceTree = "<group>"; };
+		C8667B8F19187873003D44CF /* CGGeometry-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry-KIFAdditions.m"; sourceTree = "<group>"; };
+		C8667B9019187873003D44CF /* NSFileManager-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager-KIFAdditions.h"; sourceTree = "<group>"; };
+		C8667B9119187873003D44CF /* NSFileManager-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager-KIFAdditions.m"; sourceTree = "<group>"; };
+		C8667B9219187873003D44CF /* UIAccessibilityElement-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAccessibilityElement-KIFAdditions.h"; sourceTree = "<group>"; };
+		C8667B9319187873003D44CF /* UIAccessibilityElement-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAccessibilityElement-KIFAdditions.m"; sourceTree = "<group>"; };
+		C8667B9419187873003D44CF /* UIApplication-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication-KIFAdditions.h"; sourceTree = "<group>"; };
+		C8667B9519187873003D44CF /* UIApplication-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication-KIFAdditions.m"; sourceTree = "<group>"; };
+		C8667B9619187873003D44CF /* UIScrollView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView-KIFAdditions.h"; sourceTree = "<group>"; };
+		C8667B9719187873003D44CF /* UIScrollView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView-KIFAdditions.m"; sourceTree = "<group>"; };
+		C8667B9819187873003D44CF /* UITableView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView-KIFAdditions.h"; sourceTree = "<group>"; };
+		C8667B9919187873003D44CF /* UITableView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView-KIFAdditions.m"; sourceTree = "<group>"; };
+		C8667B9A19187873003D44CF /* UITouch-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch-KIFAdditions.h"; sourceTree = "<group>"; };
+		C8667B9B19187873003D44CF /* UITouch-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch-KIFAdditions.m"; sourceTree = "<group>"; };
+		C8667B9C19187873003D44CF /* UIView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView-KIFAdditions.h"; sourceTree = "<group>"; };
+		C8667B9D19187873003D44CF /* UIView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView-KIFAdditions.m"; sourceTree = "<group>"; };
+		C8667B9E19187873003D44CF /* UIWindow-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow-KIFAdditions.h"; sourceTree = "<group>"; };
+		C8667B9F19187873003D44CF /* UIWindow-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow-KIFAdditions.m"; sourceTree = "<group>"; };
 		C8B7DC4E19109A500093FEDC /* SocketConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7DC5119109A500093FEDC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C8B7DC5319109A500093FEDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -102,38 +152,6 @@
 		C8B7DC931910AB8F0093FEDC /* SocketViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocketViewController.xib; sourceTree = "<group>"; };
 		C8B7DC951910BE410093FEDC /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		C8B7DC961910BE410093FEDC /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
-		C8C895971915D82F000D50D8 /* HVBase64StaticFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVBase64StaticFile.h; sourceTree = "<group>"; };
-		C8C895981915D82F000D50D8 /* HVBase64StaticFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVBase64StaticFile.m; sourceTree = "<group>"; };
-		C8C895991915D82F000D50D8 /* HVCoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVCoreDataHandler.h; sourceTree = "<group>"; };
-		C8C8959A1915D82F000D50D8 /* HVCoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVCoreDataHandler.m; sourceTree = "<group>"; };
-		C8C8959B1915D82F000D50D8 /* HVHierarchyHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVHierarchyHandler.h; sourceTree = "<group>"; };
-		C8C8959C1915D82F000D50D8 /* HVHierarchyHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVHierarchyHandler.m; sourceTree = "<group>"; };
-		C8C8959D1915D82F000D50D8 /* HVPreviewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVPreviewHandler.h; sourceTree = "<group>"; };
-		C8C8959E1915D82F000D50D8 /* HVPreviewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVPreviewHandler.m; sourceTree = "<group>"; };
-		C8C8959F1915D82F000D50D8 /* HVPropertyEditorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVPropertyEditorHandler.h; sourceTree = "<group>"; };
-		C8C895A01915D82F000D50D8 /* HVPropertyEditorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVPropertyEditorHandler.m; sourceTree = "<group>"; };
-		C8C895A11915D82F000D50D8 /* HVStaticFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVStaticFileHandler.h; sourceTree = "<group>"; };
-		C8C895A21915D82F000D50D8 /* HVStaticFileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVStaticFileHandler.m; sourceTree = "<group>"; };
-		C8C895A31915D82F000D50D8 /* HVBaseRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVBaseRequestHandler.h; sourceTree = "<group>"; };
-		C8C895A41915D82F000D50D8 /* HVBaseRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVBaseRequestHandler.m; sourceTree = "<group>"; };
-		C8C895A51915D82F000D50D8 /* HVHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVHTTPServer.h; sourceTree = "<group>"; };
-		C8C895A61915D82F000D50D8 /* HVHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVHTTPServer.m; sourceTree = "<group>"; };
-		C8C895A71915D82F000D50D8 /* HVDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HVDefines.h; path = "../../iOS-Hierarchy-Viewer/iOSViewHierarchy/HVDefines.h"; sourceTree = "<group>"; };
-		C8C895A81915D82F000D50D8 /* HVHierarchyScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HVHierarchyScanner.h; path = "../../iOS-Hierarchy-Viewer/iOSViewHierarchy/HVHierarchyScanner.h"; sourceTree = "<group>"; };
-		C8C895A91915D82F000D50D8 /* HVHierarchyScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HVHierarchyScanner.m; path = "../../iOS-Hierarchy-Viewer/iOSViewHierarchy/HVHierarchyScanner.m"; sourceTree = "<group>"; };
-		C8C895AA1915D82F000D50D8 /* iOSHierarchyViewer-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "iOSHierarchyViewer-Prefix.pch"; path = "../../iOS-Hierarchy-Viewer/iOSViewHierarchy/iOSHierarchyViewer-Prefix.pch"; sourceTree = "<group>"; };
-		C8C895AB1915D82F000D50D8 /* iOSHierarchyViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSHierarchyViewer.h; path = "../../iOS-Hierarchy-Viewer/iOSViewHierarchy/iOSHierarchyViewer.h"; sourceTree = "<group>"; };
-		C8C895AC1915D82F000D50D8 /* iOSHierarchyViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSHierarchyViewer.m; path = "../../iOS-Hierarchy-Viewer/iOSViewHierarchy/iOSHierarchyViewer.m"; sourceTree = "<group>"; };
-		C8C895AE1915D82F000D50D8 /* index_core.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index_core.html; sourceTree = "<group>"; };
-		C8C895AF1915D82F000D50D8 /* index_ui.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index_ui.html; sourceTree = "<group>"; };
-		C8C895B01915D82F000D50D8 /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.js; sourceTree = "<group>"; };
-		C8C895B11915D82F000D50D8 /* navbar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = navbar.js; sourceTree = "<group>"; };
-		C8C895B21915D82F000D50D8 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
-		C8C895B31915D82F000D50D8 /* webapp_index_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_index_core.h; sourceTree = "<group>"; };
-		C8C895B41915D82F000D50D8 /* webapp_index_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_index_ui.h; sourceTree = "<group>"; };
-		C8C895B51915D82F000D50D8 /* webapp_jquery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_jquery.h; sourceTree = "<group>"; };
-		C8C895B61915D82F000D50D8 /* webapp_navbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_navbar.h; sourceTree = "<group>"; };
-		C8C895B71915D82F000D50D8 /* webapp_style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webapp_style.h; sourceTree = "<group>"; };
 		C8C8962F19160072000D50D8 /* BaseCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCommand.h; sourceTree = "<group>"; };
 		C8C8963019160072000D50D8 /* BaseCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCommand.m; sourceTree = "<group>"; };
 		C8C896381916069E000D50D8 /* ActionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionProtocol.h; sourceTree = "<group>"; };
@@ -148,25 +166,6 @@
 		C8C8964819163513000D50D8 /* CommandScreenShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandScreenShot.m; sourceTree = "<group>"; };
 		C8C8964A19163747000D50D8 /* CommandClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandClick.h; sourceTree = "<group>"; };
 		C8C8964B19163747000D50D8 /* CommandClick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandClick.m; sourceTree = "<group>"; };
-		C8C8966B1917287A000D50D8 /* LoadableCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadableCategory.h; path = ../../../KIF/Additions/LoadableCategory.h; sourceTree = "<group>"; };
-		C8C8966C1917287A000D50D8 /* CGGeometry-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CGGeometry-KIFAdditions.h"; path = "../../../KIF/Additions/CGGeometry-KIFAdditions.h"; sourceTree = "<group>"; };
-		C8C8966D1917287A000D50D8 /* CGGeometry-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CGGeometry-KIFAdditions.m"; path = "../../../KIF/Additions/CGGeometry-KIFAdditions.m"; sourceTree = "<group>"; };
-		C8C8966E1917287A000D50D8 /* NSFileManager-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager-KIFAdditions.h"; path = "../../../KIF/Additions/NSFileManager-KIFAdditions.h"; sourceTree = "<group>"; };
-		C8C8966F1917287A000D50D8 /* NSFileManager-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager-KIFAdditions.m"; path = "../../../KIF/Additions/NSFileManager-KIFAdditions.m"; sourceTree = "<group>"; };
-		C8C896701917287A000D50D8 /* UIAccessibilityElement-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAccessibilityElement-KIFAdditions.h"; path = "../../../KIF/Additions/UIAccessibilityElement-KIFAdditions.h"; sourceTree = "<group>"; };
-		C8C896711917287A000D50D8 /* UIAccessibilityElement-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAccessibilityElement-KIFAdditions.m"; path = "../../../KIF/Additions/UIAccessibilityElement-KIFAdditions.m"; sourceTree = "<group>"; };
-		C8C896721917287A000D50D8 /* UIApplication-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication-KIFAdditions.h"; path = "../../../KIF/Additions/UIApplication-KIFAdditions.h"; sourceTree = "<group>"; };
-		C8C896731917287A000D50D8 /* UIApplication-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication-KIFAdditions.m"; path = "../../../KIF/Additions/UIApplication-KIFAdditions.m"; sourceTree = "<group>"; };
-		C8C896741917287A000D50D8 /* UIScrollView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView-KIFAdditions.h"; path = "../../../KIF/Additions/UIScrollView-KIFAdditions.h"; sourceTree = "<group>"; };
-		C8C896751917287A000D50D8 /* UIScrollView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView-KIFAdditions.m"; path = "../../../KIF/Additions/UIScrollView-KIFAdditions.m"; sourceTree = "<group>"; };
-		C8C896761917287A000D50D8 /* UITouch-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITouch-KIFAdditions.h"; path = "../../../KIF/Additions/UITouch-KIFAdditions.h"; sourceTree = "<group>"; };
-		C8C896771917287A000D50D8 /* UITouch-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITouch-KIFAdditions.m"; path = "../../../KIF/Additions/UITouch-KIFAdditions.m"; sourceTree = "<group>"; };
-		C8C896781917287A000D50D8 /* UIView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView-KIFAdditions.h"; path = "../../../KIF/Additions/UIView-KIFAdditions.h"; sourceTree = "<group>"; };
-		C8C896791917287A000D50D8 /* UIView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView-KIFAdditions.m"; path = "../../../KIF/Additions/UIView-KIFAdditions.m"; sourceTree = "<group>"; };
-		C8C8967A1917287A000D50D8 /* UIWindow-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWindow-KIFAdditions.h"; path = "../../../KIF/Additions/UIWindow-KIFAdditions.h"; sourceTree = "<group>"; };
-		C8C8967B1917287A000D50D8 /* UIWindow-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWindow-KIFAdditions.m"; path = "../../../KIF/Additions/UIWindow-KIFAdditions.m"; sourceTree = "<group>"; };
-		C8C8967C1917287A000D50D8 /* UITableView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView-KIFAdditions.h"; path = "../../../KIF/Additions/UITableView-KIFAdditions.h"; sourceTree = "<group>"; };
-		C8C8967D1917287A000D50D8 /* UITableView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView-KIFAdditions.m"; path = "../../../KIF/Additions/UITableView-KIFAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +193,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C8667B5B191877D0003D44CF /* http */ = {
+			isa = PBXGroup;
+			children = (
+				C8667B5C191877D0003D44CF /* api */,
+				C8667B69191877D0003D44CF /* HVBaseRequestHandler.h */,
+				C8667B6A191877D0003D44CF /* HVBaseRequestHandler.m */,
+				C8667B6B191877D0003D44CF /* HVHTTPServer.h */,
+				C8667B6C191877D0003D44CF /* HVHTTPServer.m */,
+			);
+			name = http;
+			path = iOSViewHierarchy/http;
+			sourceTree = "<group>";
+		};
+		C8667B5C191877D0003D44CF /* api */ = {
+			isa = PBXGroup;
+			children = (
+				C8667B5D191877D0003D44CF /* HVBase64StaticFile.h */,
+				C8667B5E191877D0003D44CF /* HVBase64StaticFile.m */,
+				C8667B5F191877D0003D44CF /* HVCoreDataHandler.h */,
+				C8667B60191877D0003D44CF /* HVCoreDataHandler.m */,
+				C8667B61191877D0003D44CF /* HVHierarchyHandler.h */,
+				C8667B62191877D0003D44CF /* HVHierarchyHandler.m */,
+				C8667B63191877D0003D44CF /* HVPreviewHandler.h */,
+				C8667B64191877D0003D44CF /* HVPreviewHandler.m */,
+				C8667B65191877D0003D44CF /* HVPropertyEditorHandler.h */,
+				C8667B66191877D0003D44CF /* HVPropertyEditorHandler.m */,
+				C8667B67191877D0003D44CF /* HVStaticFileHandler.h */,
+				C8667B68191877D0003D44CF /* HVStaticFileHandler.m */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		C8667B73191877D0003D44CF /* webapp */ = {
+			isa = PBXGroup;
+			children = (
+				C8667B74191877D0003D44CF /* index_core.html */,
+				C8667B75191877D0003D44CF /* index_ui.html */,
+				C8667B76191877D0003D44CF /* jquery.js */,
+				C8667B77191877D0003D44CF /* navbar.js */,
+				C8667B78191877D0003D44CF /* style.css */,
+				C8667B79191877D0003D44CF /* webapp_index_core.h */,
+				C8667B7A191877D0003D44CF /* webapp_index_ui.h */,
+				C8667B7B191877D0003D44CF /* webapp_jquery.h */,
+				C8667B7C191877D0003D44CF /* webapp_navbar.h */,
+				C8667B7D191877D0003D44CF /* webapp_style.h */,
+			);
+			name = webapp;
+			path = iOSViewHierarchy/webapp;
+			sourceTree = "<group>";
+		};
+		C8667B8D19187873003D44CF /* Addition */ = {
+			isa = PBXGroup;
+			children = (
+				C8667B8E19187873003D44CF /* CGGeometry-KIFAdditions.h */,
+				C8667B8F19187873003D44CF /* CGGeometry-KIFAdditions.m */,
+				C8667B9019187873003D44CF /* NSFileManager-KIFAdditions.h */,
+				C8667B9119187873003D44CF /* NSFileManager-KIFAdditions.m */,
+				C8667B9219187873003D44CF /* UIAccessibilityElement-KIFAdditions.h */,
+				C8667B9319187873003D44CF /* UIAccessibilityElement-KIFAdditions.m */,
+				C8667B9419187873003D44CF /* UIApplication-KIFAdditions.h */,
+				C8667B9519187873003D44CF /* UIApplication-KIFAdditions.m */,
+				C8667B9619187873003D44CF /* UIScrollView-KIFAdditions.h */,
+				C8667B9719187873003D44CF /* UIScrollView-KIFAdditions.m */,
+				C8667B9819187873003D44CF /* UITableView-KIFAdditions.h */,
+				C8667B9919187873003D44CF /* UITableView-KIFAdditions.m */,
+				C8667B9A19187873003D44CF /* UITouch-KIFAdditions.h */,
+				C8667B9B19187873003D44CF /* UITouch-KIFAdditions.m */,
+				C8667B9C19187873003D44CF /* UIView-KIFAdditions.h */,
+				C8667B9D19187873003D44CF /* UIView-KIFAdditions.m */,
+				C8667B9E19187873003D44CF /* UIWindow-KIFAdditions.h */,
+				C8667B9F19187873003D44CF /* UIWindow-KIFAdditions.m */,
+			);
+			path = Addition;
+			sourceTree = "<group>";
+		};
 		C8B7DC4519109A500093FEDC = {
 			isa = PBXGroup;
 			children = (
@@ -229,18 +303,18 @@
 		C8B7DC5719109A500093FEDC /* SocketConnect */ = {
 			isa = PBXGroup;
 			children = (
-				C8C8966A1917286C000D50D8 /* Addition */,
+				C8667B8D19187873003D44CF /* Addition */,
+				C8667B5B191877D0003D44CF /* http */,
+				C8667B6D191877D0003D44CF /* HVDefines.h */,
+				C8667B6E191877D0003D44CF /* HVHierarchyScanner.h */,
+				C8667B6F191877D0003D44CF /* HVHierarchyScanner.m */,
+				C8667B70191877D0003D44CF /* iOSHierarchyViewer-Prefix.pch */,
+				C8667B71191877D0003D44CF /* iOSHierarchyViewer.h */,
+				C8667B72191877D0003D44CF /* iOSHierarchyViewer.m */,
+				C8667B73191877D0003D44CF /* webapp */,
 				C8C8964319160D4A000D50D8 /* util */,
 				C8C8963C19160B2A000D50D8 /* command */,
 				C8C8963B19160AD2000D50D8 /* action */,
-				C8C895951915D82F000D50D8 /* http */,
-				C8C895A71915D82F000D50D8 /* HVDefines.h */,
-				C8C895A81915D82F000D50D8 /* HVHierarchyScanner.h */,
-				C8C895A91915D82F000D50D8 /* HVHierarchyScanner.m */,
-				C8C895AA1915D82F000D50D8 /* iOSHierarchyViewer-Prefix.pch */,
-				C8C895AB1915D82F000D50D8 /* iOSHierarchyViewer.h */,
-				C8C895AC1915D82F000D50D8 /* iOSHierarchyViewer.m */,
-				C8C895AD1915D82F000D50D8 /* webapp */,
 				C8B7DC951910BE410093FEDC /* Main_iPad.storyboard */,
 				C8B7DC961910BE410093FEDC /* Main_iPhone.storyboard */,
 				C8B7DC8D1910A9430093FEDC /* SocketViewController.h */,
@@ -292,56 +366,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		C8C895951915D82F000D50D8 /* http */ = {
-			isa = PBXGroup;
-			children = (
-				C8C895961915D82F000D50D8 /* api */,
-				C8C895A31915D82F000D50D8 /* HVBaseRequestHandler.h */,
-				C8C895A41915D82F000D50D8 /* HVBaseRequestHandler.m */,
-				C8C895A51915D82F000D50D8 /* HVHTTPServer.h */,
-				C8C895A61915D82F000D50D8 /* HVHTTPServer.m */,
-			);
-			name = http;
-			path = "../../iOS-Hierarchy-Viewer/iOSViewHierarchy/http";
-			sourceTree = "<group>";
-		};
-		C8C895961915D82F000D50D8 /* api */ = {
-			isa = PBXGroup;
-			children = (
-				C8C895971915D82F000D50D8 /* HVBase64StaticFile.h */,
-				C8C895981915D82F000D50D8 /* HVBase64StaticFile.m */,
-				C8C895991915D82F000D50D8 /* HVCoreDataHandler.h */,
-				C8C8959A1915D82F000D50D8 /* HVCoreDataHandler.m */,
-				C8C8959B1915D82F000D50D8 /* HVHierarchyHandler.h */,
-				C8C8959C1915D82F000D50D8 /* HVHierarchyHandler.m */,
-				C8C8959D1915D82F000D50D8 /* HVPreviewHandler.h */,
-				C8C8959E1915D82F000D50D8 /* HVPreviewHandler.m */,
-				C8C8959F1915D82F000D50D8 /* HVPropertyEditorHandler.h */,
-				C8C895A01915D82F000D50D8 /* HVPropertyEditorHandler.m */,
-				C8C895A11915D82F000D50D8 /* HVStaticFileHandler.h */,
-				C8C895A21915D82F000D50D8 /* HVStaticFileHandler.m */,
-			);
-			path = api;
-			sourceTree = "<group>";
-		};
-		C8C895AD1915D82F000D50D8 /* webapp */ = {
-			isa = PBXGroup;
-			children = (
-				C8C895AE1915D82F000D50D8 /* index_core.html */,
-				C8C895AF1915D82F000D50D8 /* index_ui.html */,
-				C8C895B01915D82F000D50D8 /* jquery.js */,
-				C8C895B11915D82F000D50D8 /* navbar.js */,
-				C8C895B21915D82F000D50D8 /* style.css */,
-				C8C895B31915D82F000D50D8 /* webapp_index_core.h */,
-				C8C895B41915D82F000D50D8 /* webapp_index_ui.h */,
-				C8C895B51915D82F000D50D8 /* webapp_jquery.h */,
-				C8C895B61915D82F000D50D8 /* webapp_navbar.h */,
-				C8C895B71915D82F000D50D8 /* webapp_style.h */,
-			);
-			name = webapp;
-			path = "../../iOS-Hierarchy-Viewer/iOSViewHierarchy/webapp";
-			sourceTree = "<group>";
-		};
 		C8C8963B19160AD2000D50D8 /* action */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,32 +405,6 @@
 				C8C8964119160D42000D50D8 /* JSONKit.m */,
 			);
 			name = util;
-			sourceTree = "<group>";
-		};
-		C8C8966A1917286C000D50D8 /* Addition */ = {
-			isa = PBXGroup;
-			children = (
-				C8C8966B1917287A000D50D8 /* LoadableCategory.h */,
-				C8C8966C1917287A000D50D8 /* CGGeometry-KIFAdditions.h */,
-				C8C8966D1917287A000D50D8 /* CGGeometry-KIFAdditions.m */,
-				C8C8966E1917287A000D50D8 /* NSFileManager-KIFAdditions.h */,
-				C8C8966F1917287A000D50D8 /* NSFileManager-KIFAdditions.m */,
-				C8C896701917287A000D50D8 /* UIAccessibilityElement-KIFAdditions.h */,
-				C8C896711917287A000D50D8 /* UIAccessibilityElement-KIFAdditions.m */,
-				C8C896721917287A000D50D8 /* UIApplication-KIFAdditions.h */,
-				C8C896731917287A000D50D8 /* UIApplication-KIFAdditions.m */,
-				C8C896741917287A000D50D8 /* UIScrollView-KIFAdditions.h */,
-				C8C896751917287A000D50D8 /* UIScrollView-KIFAdditions.m */,
-				C8C896761917287A000D50D8 /* UITouch-KIFAdditions.h */,
-				C8C896771917287A000D50D8 /* UITouch-KIFAdditions.m */,
-				C8C896781917287A000D50D8 /* UIView-KIFAdditions.h */,
-				C8C896791917287A000D50D8 /* UIView-KIFAdditions.m */,
-				C8C8967A1917287A000D50D8 /* UIWindow-KIFAdditions.h */,
-				C8C8967B1917287A000D50D8 /* UIWindow-KIFAdditions.m */,
-				C8C8967C1917287A000D50D8 /* UITableView-KIFAdditions.h */,
-				C8C8967D1917287A000D50D8 /* UITableView-KIFAdditions.m */,
-			);
-			name = Addition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,13 +484,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8B7DC6D19109A510093FEDC /* Images.xcassets in Resources */,
+				C8667B8C191877D0003D44CF /* style.css in Resources */,
 				C8B7DC971910BE410093FEDC /* Main_iPad.storyboard in Resources */,
+				C8667B88191877D0003D44CF /* index_core.html in Resources */,
 				C8B7DC981910BE410093FEDC /* Main_iPhone.storyboard in Resources */,
-				C8C896011915D82F000D50D8 /* index_ui.html in Resources */,
-				C8C896041915D82F000D50D8 /* style.css in Resources */,
 				C8B7DC5C19109A510093FEDC /* InfoPlist.strings in Resources */,
 				C8B7DC941910AB8F0093FEDC /* SocketViewController.xib in Resources */,
-				C8C896001915D82F000D50D8 /* index_core.html in Resources */,
+				C8667B89191877D0003D44CF /* index_ui.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,41 +509,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8667B8A191877D0003D44CF /* jquery.js in Sources */,
 				C8C8964919163513000D50D8 /* CommandScreenShot.m in Sources */,
+				C8667BA019187873003D44CF /* CGGeometry-KIFAdditions.m in Sources */,
+				C8667B83191877D0003D44CF /* HVStaticFileHandler.m in Sources */,
 				C8C8963F19160BCF000D50D8 /* CommandFind.m in Sources */,
 				C8C89646191631F9000D50D8 /* CommandDeviceInfo.m in Sources */,
-				C8C895FF1915D82F000D50D8 /* iOSHierarchyViewer.m in Sources */,
 				C8C8963A1916069E000D50D8 /* ActionProtocol.m in Sources */,
-				C8C895F61915D82F000D50D8 /* HVBase64StaticFile.m in Sources */,
 				C8B7DC6B19109A510093FEDC /* ViewController.m in Sources */,
-				C8C896891917287A000D50D8 /* NSFileManager-KIFAdditions.m in Sources */,
+				C8667B87191877D0003D44CF /* iOSHierarchyViewer.m in Sources */,
+				C8667B8B191877D0003D44CF /* navbar.js in Sources */,
+				C8667B80191877D0003D44CF /* HVHierarchyHandler.m in Sources */,
 				C8C8964219160D42000D50D8 /* JSONKit.m in Sources */,
+				C8667B82191877D0003D44CF /* HVPropertyEditorHandler.m in Sources */,
 				C8667B5A1917855A003D44CF /* AutoDirver.m in Sources */,
-				C8C895F81915D82F000D50D8 /* HVHierarchyHandler.m in Sources */,
-				C8C896901917287A000D50D8 /* UITableView-KIFAdditions.m in Sources */,
-				C8C8968F1917287A000D50D8 /* UIWindow-KIFAdditions.m in Sources */,
-				C8C896021915D82F000D50D8 /* jquery.js in Sources */,
-				C8C895F91915D82F000D50D8 /* HVPreviewHandler.m in Sources */,
+				C8667BA619187873003D44CF /* UITouch-KIFAdditions.m in Sources */,
+				C8667BA719187873003D44CF /* UIView-KIFAdditions.m in Sources */,
 				1A55B0CE191243A1000BCCD4 /* TypeSwapUtil.m in Sources */,
-				C8C8968C1917287A000D50D8 /* UIScrollView-KIFAdditions.m in Sources */,
-				C8C8968E1917287A000D50D8 /* UIView-KIFAdditions.m in Sources */,
-				C8C8968D1917287A000D50D8 /* UITouch-KIFAdditions.m in Sources */,
-				C8C8968A1917287A000D50D8 /* UIAccessibilityElement-KIFAdditions.m in Sources */,
 				C8B7DC8F1910A9430093FEDC /* SocketViewController.m in Sources */,
-				C8C896031915D82F000D50D8 /* navbar.js in Sources */,
 				C8667AE419177363003D44CF /* CommandKey.m in Sources */,
 				C8C8964C19163747000D50D8 /* CommandClick.m in Sources */,
-				C8C895FA1915D82F000D50D8 /* HVPropertyEditorHandler.m in Sources */,
-				C8C895F71915D82F000D50D8 /* HVCoreDataHandler.m in Sources */,
-				C8C896881917287A000D50D8 /* CGGeometry-KIFAdditions.m in Sources */,
-				C8C8968B1917287A000D50D8 /* UIApplication-KIFAdditions.m in Sources */,
-				C8C895FB1915D82F000D50D8 /* HVStaticFileHandler.m in Sources */,
-				C8C895FC1915D82F000D50D8 /* HVBaseRequestHandler.m in Sources */,
-				C8C895FE1915D82F000D50D8 /* HVHierarchyScanner.m in Sources */,
+				C8667B84191877D0003D44CF /* HVBaseRequestHandler.m in Sources */,
+				C8667B86191877D0003D44CF /* HVHierarchyScanner.m in Sources */,
+				C8667B7F191877D0003D44CF /* HVCoreDataHandler.m in Sources */,
+				C8667BA219187873003D44CF /* UIAccessibilityElement-KIFAdditions.m in Sources */,
+				C8667BA119187873003D44CF /* NSFileManager-KIFAdditions.m in Sources */,
+				C8667B7E191877D0003D44CF /* HVBase64StaticFile.m in Sources */,
+				C8667BA819187873003D44CF /* UIWindow-KIFAdditions.m in Sources */,
+				C8667B81191877D0003D44CF /* HVPreviewHandler.m in Sources */,
 				C8B7DC6219109A510093FEDC /* AppDelegate.m in Sources */,
-				C8C895FD1915D82F000D50D8 /* HVHTTPServer.m in Sources */,
 				C8C8963119160072000D50D8 /* BaseCommand.m in Sources */,
+				C8667B85191877D0003D44CF /* HVHTTPServer.m in Sources */,
+				C8667BA519187873003D44CF /* UITableView-KIFAdditions.m in Sources */,
+				C8667BA419187873003D44CF /* UIScrollView-KIFAdditions.m in Sources */,
 				C8B7DC5E19109A510093FEDC /* main.m in Sources */,
+				C8667BA319187873003D44CF /* UIApplication-KIFAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
