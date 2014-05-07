@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSONKit.h"
 typedef enum {
     CLICK = 0x001,
     FINDVIEW= 0x002,
@@ -23,6 +22,7 @@ typedef enum {
     SCREENSHOT= 0x00C,
     VIEWDUMP= 0x00D,
     DEVICEINFO= 0x00E,
+    FINISH= 0x00F,
 } ActionProtocolActionType;
 @interface ActionProtocol : NSObject
 

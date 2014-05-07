@@ -8,6 +8,7 @@
 
 #import "CommandClick.h"
 #import "CommandFind.h"
+#import "BlockDelayUtil.h"
 #import "UIAccessibilityElement-KIFAdditions.h"
 #import "UIView-KIFAdditions.h"
 @implementation CommandClick
@@ -24,15 +25,21 @@
     responseCommand.result = (unsigned char) 0;
     NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
     [resultInfo setObject:@"success" forKey:@"value"];
-    responseCommand.body = [resultInfo JSONString];
+//    responseCommand.body = [resultInfo JSONString];
+    NSData* resultJson =[NSJSONSerialization dataWithJSONObject:resultInfo options:NSJSONWritingPrettyPrinted error:Nil];
+    responseCommand.body = [[NSString alloc] initWithData:resultJson encoding:NSUTF8StringEncoding] ;
+
 }
 + (void)tapAccessibilityElement:(UIView *)view
 {
-    CGPoint tappablePointInElement ;
-    tappablePointInElement.x = view.frame.size.width/2;
-    tappablePointInElement.y = view.frame.size.height/2;
-    [view tapAtPoint:tappablePointInElement];
-    
+    [BlockDelayUtil runBlock:^StepResult() {
+        CGPoint tappablePointInElement ;
+        tappablePointInElement.x = view.frame.size.width/2;
+        tappablePointInElement.y = view.frame.size.height/2;
+        [view tapAtPoint:tappablePointInElement];
+        return StepResultSuccess;
+    }];
+    [BlockDelayUtil waitForTimeInterval:0.5];
 }
 + (void)tapAccessibilityElement:(UIAccessibilityElement *)element inView:(UIView *)view
 {

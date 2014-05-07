@@ -7,17 +7,22 @@
 //
 
 #import "CommandKey.h"
+#import "KIFTypist.h"
+#import "BlockDelayUtil.h"
 @implementation CommandKey
 -(void) excute:(ActionProtocol*)requestCommand ActionResult:(ActionProtocol*)responseCommand{
     NSDictionary* params = requestCommand.params;
     long elementID = [[params objectForKey:@"elementId"] longValue];
     NSString* value = [params objectForKey:@"text"];
-//    UIView* view = [CommandFind findViewById:elementID];
-    UIView* view=[CommandKey recursiveSearchClickableForView:[CommandFind findViewById:elementID]];
-//    [CommandClick tapAccessibilityElement:view];
-//    [CommandKey setText:view appendValue:@"set"];
-    [self performSelector:@selector(doIt:) withObject:view afterDelay:0.5];
+    UIView* view = [CommandFind findViewById:elementID];
+//    UIView* view=[CommandKey recursiveSearchClickableForView:[CommandFind findViewById:elementID]];
+    [CommandClick tapAccessibilityElement:view];
+    [BlockDelayUtil waitForKeyboard];
+    [CommandKey setText:view appendValue:value];
 
+//    [self performSelectorOnMainThread:@selector(doIt:) withObject:view waitUntilDone:TRUE];
+//    [self performSelector:@selector(doIt:) withObject:view afterDelay:1];
+    
     responseCommand.actionCode = requestCommand.actionCode;
     responseCommand.seqNo = requestCommand.seqNo;
     responseCommand.result = (unsigned char) 0;
@@ -28,8 +33,14 @@
 }
 -(void)doIt:(UIView*)view
 {
-    [CommandClick tapAccessibilityElement:view];
+//    [CommandClick tapAccessibilityElement:view];
     [CommandKey setText:view appendValue:@"set"];
+//    void (^pressKey)() = ^() {
+//        [CommandKey setText:view appendValue:@"set"];
+//    };
+//    [BlockDelayUtil performBlock:pressKey afterDelay:1];
+    
+//    dis(dispatch_get_main_queue(), pressKey);
 }
 + (UIView *)recursiveSearchClickableForView:(UIView *)parent
 {
@@ -51,15 +62,17 @@
         
         for (NSUInteger characterIndex = 0; characterIndex < [text length]; characterIndex++) {
             NSString *characterString = [text substringWithRange:NSMakeRange(characterIndex, 1)];
-
-            UIResponder *firstResponder = [[[UIApplication sharedApplication] keyWindow] firstResponder];
-            if ([firstResponder isKindOfClass:[UIView class]]) {
-                view = (UIView *)firstResponder;
-            }
-            if ([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UISearchBar class]]) {
-                [(UITextField *)view setText:[[(UITextField *)view text] stringByAppendingString:characterString]];
-            } else {
-                
+            if (![KIFTypist enterCharacter:characterString])
+            {
+                UIResponder *firstResponder = [[[UIApplication sharedApplication] keyWindow] firstResponder];
+                if ([firstResponder isKindOfClass:[UIView class]]) {
+                    view = (UIView *)firstResponder;
+                }
+                if ([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UISearchBar class]]) {
+                    [(UITextField *)view setText:[[(UITextField *)view text] stringByAppendingString:characterString]];
+                } else {
+                    
+                }
             }
         }
         

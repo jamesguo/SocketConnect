@@ -17,7 +17,7 @@
 #import "CommandClick.h"
 #import "CommandKey.h"
 #import "CommandScreenShot.h"
-
+#import "KIFTypist.h"
 
 #define kTestHost @"http://172.16.156.234"
 #define kTestPort @"6100"
@@ -40,6 +40,7 @@
                                                      object:url];
         [backgroundThread start];
     }
+    [KIFTypist registerForNotifications];
     return TRUE;
 }
 
@@ -99,6 +100,8 @@
             [command excute:actionCommand ActionResult:reponseCommand];
             break;
         }
+        case FINISH:
+            reponseCommand=nil;
         default:
             break;
     }

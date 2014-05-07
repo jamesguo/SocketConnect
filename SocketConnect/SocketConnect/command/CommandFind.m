@@ -7,6 +7,7 @@
 //
 
 #import "CommandFind.h"
+#import "BlockDelayUtil.h"
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import <math.h>
@@ -42,7 +43,8 @@
         responseCommand.result = (unsigned char) 1;
         NSMutableDictionary * errorInfo = [[NSMutableDictionary alloc]init];
         [errorInfo setObject:@"can not find element" forKey:@"errorinfo"];
-        responseCommand.body = [errorInfo JSONString];
+        NSData* resultJson =[NSJSONSerialization dataWithJSONObject:errorInfo options:NSJSONWritingPrettyPrinted error:Nil];
+        responseCommand.body = [[NSString alloc] initWithData:resultJson encoding:NSUTF8StringEncoding] ;
     }
 }
 
@@ -77,19 +79,28 @@
 
 +(void)getViews:(FindType)findType TextValue:(NSString *)value Multi:(BOOL)multiple Result:(NSMutableArray*) resultArray
 {
-    UIApplication *app = [UIApplication sharedApplication];
-    if (app && app.windows) {
-        void (^gatherProperties)() = ^() {
-            for (UIWindow *window in app.windows) {
-                [CommandFind ViewScan:window Find:findType TextValue:value Result:resultArray];
+    [BlockDelayUtil runBlock:^StepResult() {
+        UIApplication *app = [UIApplication sharedApplication];
+        if (app && app.windows)
+        {
+            void (^gatherProperties)() = ^()
+            {
+                for (UIWindow *window in app.windows)
+                {
+                    [CommandFind ViewScan:window Find:findType TextValue:value Result:resultArray];
+                }
+            };
+            if ([NSThread mainThread] == [NSThread currentThread])
+            {
+                gatherProperties();
             }
-        };
-        if ([NSThread mainThread] == [NSThread currentThread]) {
-            gatherProperties();
-        } else {
-            dispatch_sync(dispatch_get_main_queue(), gatherProperties);
+            else
+            {
+                dispatch_sync(dispatch_get_main_queue(), gatherProperties);
+            }
         }
-    }
+        return StepResultSuccess;
+    }];
 }
 
 + (void)classProperties:(Class)class object:(NSObject *)obj result:(NSMutableArray *)propertiesArray

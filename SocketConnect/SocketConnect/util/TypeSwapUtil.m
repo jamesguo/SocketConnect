@@ -19,11 +19,11 @@
 };
 + (int) SwapBytesToInt:(char[])pBlah
 {
-    printf("SwapBytesToInt\n");
-    printf("%d\n", pBlah [0]);
-    printf("%d\n", pBlah [1]);
-    printf("%d\n", pBlah [2]);
-    printf("%d\n", pBlah [3]);
+//    printf("SwapBytesToInt\n");
+//    printf("%d\n", pBlah [0]);
+//    printf("%d\n", pBlah [1]);
+//    printf("%d\n", pBlah [2]);
+//    printf("%d\n", pBlah [3]);
     int result = ((pBlah[0]& 0xFF)<<24)|((pBlah[1]& 0xFF)<<16)|((pBlah[2]&0xFF)<<8)|(pBlah[3]&0xFF);
     return result;
 };
