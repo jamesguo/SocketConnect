@@ -13,7 +13,7 @@
 #import <math.h>
 #import <QuartzCore/QuartzCore.h>
 #import "HVHierarchyScanner.h"
-
+#import "UIAccessibilityElement-KIFAdditions.h"
 @implementation CommandFind
 
 -(void) excute:(ActionProtocol*)requestCommand ActionResult:(ActionProtocol*)responseCommand{
@@ -87,6 +87,7 @@
             {
                 for (UIWindow *window in app.windows)
                 {
+                    UIView* findView2 = [self waitForViewWithAccessibilityLabel:value valueStr:nil traits:UIAccessibilityTraitNone tappable:TRUE];
                     [CommandFind ViewScan:window Find:findType TextValue:value Result:resultArray];
                 }
             };
@@ -230,6 +231,24 @@
     free(properties);
 }
 
++ (UIView *)waitForViewWithAccessibilityLabel:(NSString *)label valueStr:(NSString *)value traits:(UIAccessibilityTraits)traits tappable:(BOOL)mustBeTappable
+{
+    UIView *view = nil;
+    [self waitForAccessibilityElement:NULL view:&view withLabel:label value:value traits:traits tappable:mustBeTappable];
+    return view;
+}
+
++ (void)waitForAccessibilityElement:(UIAccessibilityElement **)element view:(out UIView **)view withLabel:(NSString *)label value:(NSString *)value traits:(UIAccessibilityTraits)traits tappable:(BOOL)mustBeTappable
+{
+//    [[[KIFUITestActor alloc]init] runBlock:^KIFTestStepResult(NSError *__autoreleasing *error) {
+//        return [UIAccessibilityElement accessibilityElement:element view:view withLabel:label value:value traits:traits tappable:mustBeTappable error:error] ? KIFTestStepResultSuccess : KIFTestStepResultWait;
+//    }];
+    
+    
+    [BlockDelayUtil runBlock:^StepResult() {
+        return [UIAccessibilityElement accessibilityElement:element view:view withLabel:label value:value traits:traits tappable:mustBeTappable error:Nil] ? StepResultSuccess : StepResultWait;
+    }];
+}
 + (void)ViewScan:(UIView *)view Find:(FindType)findType TextValue:(NSString *)value Result:(NSMutableArray*) resultArray
 {
     if (view)
@@ -267,9 +286,27 @@
                 int i;
                 for (i = 0; i < count; i++){
                    NSMutableDictionary *propertyDescription = [properties objectAtIndex:i];
-                    if ([(NSString*)[propertyDescription objectForKey:@"name"] compare:@"text"]==0)
+                    NSString *label = view.accessibilityLabel ? view.accessibilityLabel: @"";
+                    if(![label isEqualToString:@""]){
+                        if ([label isEqualToString:value]||[view.accessibilityValue isEqualToString:value])
+                        {
+                            NSMutableDictionary *viewDescription = [[NSMutableDictionary alloc] initWithCapacity:10] ;
+                            [viewDescription setValue:[NSNumber numberWithLong:(long)view] forKey:@"id"];
+                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.x)] forKey:@"layer_bounds_x"];
+                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.y)] forKey:@"layer_bounds_y"];
+                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.width)] forKey:@"layer_bounds_w"];
+                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.height)] forKey:@"layer_bounds_h"];
+                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.x)] forKey:@"layer_position_x"];
+                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.y)] forKey:@"layer_position_y"];
+                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
+                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
+                            [resultArray addObject:viewDescription];
+                            break;
+                        }
+                    }
+                    if ([(NSString*)[propertyDescription objectForKey:@"name"] isEqualToString:@"text"])
                     {
-                        if([(NSString *)[propertyDescription objectForKey:@"value"] compare:value] == 0)
+                        if([(NSString *)[propertyDescription objectForKey:@"value"] isEqualToString:value])
                         {
                             NSMutableDictionary *viewDescription = [[NSMutableDictionary alloc] initWithCapacity:10] ;
                             [viewDescription setValue:[NSNumber numberWithLong:(long)view] forKey:@"id"];

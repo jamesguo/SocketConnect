@@ -17,4 +17,6 @@ typedef enum {
 + (void)classProperties:(Class)class object:(NSObject *)obj result:(NSMutableArray *)properties;
 + (void)ViewScan:(UIView *)view Find:(FindType)findType TextValue:(NSString *)value Result:(NSMutableArray*) resultArray;
 + (UIView *)findViewById:(long)_id;
++ (UIView *)waitForViewWithAccessibilityLabel:(NSString *)label valueStr:(NSString *)value traits:(UIAccessibilityTraits)traits tappable:(BOOL)mustBeTappable;
++ (void)waitForAccessibilityElement:(UIAccessibilityElement **)element view:(out UIView **)view withLabel:(NSString *)label value:(NSString *)value traits:(UIAccessibilityTraits)traits tappable:(BOOL)mustBeTappable;
 @end

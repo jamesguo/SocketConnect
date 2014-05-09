@@ -43,6 +43,9 @@
 		C886B7A8191A11E100D00B5D /* CommandKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C886B7A1191A11E100D00B5D /* CommandKey.m */; };
 		C886B7A9191A11E100D00B5D /* CommandScreenShot.m in Sources */ = {isa = PBXBuildFile; fileRef = C886B7A3191A11E100D00B5D /* CommandScreenShot.m */; };
 		C886B7AC191A123300D00B5D /* AutoDirver.m in Sources */ = {isa = PBXBuildFile; fileRef = C886B7AB191A123300D00B5D /* AutoDirver.m */; };
+		C88BB0DA191A47E000D83F99 /* KIFSystemTestActor.m in Sources */ = {isa = PBXBuildFile; fileRef = C88BB0CF191A47E000D83F99 /* KIFSystemTestActor.m */; };
+		C88BB0DB191A47E000D83F99 /* KIFTestActor.m in Sources */ = {isa = PBXBuildFile; fileRef = C88BB0D1191A47E000D83F99 /* KIFTestActor.m */; };
+		C88BB0DF191A47E000D83F99 /* KIFUITestActor.m in Sources */ = {isa = PBXBuildFile; fileRef = C88BB0D9191A47E000D83F99 /* KIFUITestActor.m */; };
 		C8B7DC5219109A500093FEDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5119109A500093FEDC /* Foundation.framework */; };
 		C8B7DC5419109A500093FEDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5319109A500093FEDC /* CoreGraphics.framework */; };
 		C8B7DC5619109A500093FEDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B7DC5519109A500093FEDC /* UIKit.framework */; };
@@ -147,6 +150,15 @@
 		C886B7A3191A11E100D00B5D /* CommandScreenShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommandScreenShot.m; path = command/CommandScreenShot.m; sourceTree = "<group>"; };
 		C886B7AA191A123300D00B5D /* AutoDirver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoDirver.h; sourceTree = "<group>"; };
 		C886B7AB191A123300D00B5D /* AutoDirver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoDirver.m; sourceTree = "<group>"; };
+		C88BB0CB191A47E000D83F99 /* KIF-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIF-Prefix.pch"; sourceTree = "<group>"; };
+		C88BB0CC191A47E000D83F99 /* KIF-XCTestPrefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIF-XCTestPrefix.pch"; sourceTree = "<group>"; };
+		C88BB0CD191A47E000D83F99 /* KIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIF.h; sourceTree = "<group>"; };
+		C88BB0CE191A47E000D83F99 /* KIFSystemTestActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIFSystemTestActor.h; sourceTree = "<group>"; };
+		C88BB0CF191A47E000D83F99 /* KIFSystemTestActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIFSystemTestActor.m; sourceTree = "<group>"; };
+		C88BB0D0191A47E000D83F99 /* KIFTestActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIFTestActor.h; sourceTree = "<group>"; };
+		C88BB0D1191A47E000D83F99 /* KIFTestActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIFTestActor.m; sourceTree = "<group>"; };
+		C88BB0D8191A47E000D83F99 /* KIFUITestActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIFUITestActor.h; sourceTree = "<group>"; };
+		C88BB0D9191A47E000D83F99 /* KIFUITestActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIFUITestActor.m; sourceTree = "<group>"; };
 		C8B7DC4E19109A500093FEDC /* SocketConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7DC5119109A500093FEDC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C8B7DC5319109A500093FEDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -275,6 +287,22 @@
 			path = Addition;
 			sourceTree = "<group>";
 		};
+		C88BB0CA191A47E000D83F99 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				C88BB0CB191A47E000D83F99 /* KIF-Prefix.pch */,
+				C88BB0CC191A47E000D83F99 /* KIF-XCTestPrefix.pch */,
+				C88BB0CD191A47E000D83F99 /* KIF.h */,
+				C88BB0CE191A47E000D83F99 /* KIFSystemTestActor.h */,
+				C88BB0CF191A47E000D83F99 /* KIFSystemTestActor.m */,
+				C88BB0D0191A47E000D83F99 /* KIFTestActor.h */,
+				C88BB0D1191A47E000D83F99 /* KIFTestActor.m */,
+				C88BB0D8191A47E000D83F99 /* KIFUITestActor.h */,
+				C88BB0D9191A47E000D83F99 /* KIFUITestActor.m */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
 		C8B7DC4519109A500093FEDC = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +338,7 @@
 		C8B7DC5719109A500093FEDC /* SocketConnect */ = {
 			isa = PBXGroup;
 			children = (
+				C88BB0CA191A47E000D83F99 /* Extra */,
 				C886B7AA191A123300D00B5D /* AutoDirver.h */,
 				C886B7AB191A123300D00B5D /* AutoDirver.m */,
 				C8667B8D19187873003D44CF /* Addition */,
@@ -525,10 +554,13 @@
 				C886B795191A11D300D00B5D /* ActionProtocol.m in Sources */,
 				C8B7DC8F1910A9430093FEDC /* SocketViewController.m in Sources */,
 				C8667B84191877D0003D44CF /* HVBaseRequestHandler.m in Sources */,
+				C88BB0DF191A47E000D83F99 /* KIFUITestActor.m in Sources */,
 				C8667BB01919C05C003D44CF /* KIFTypist.m in Sources */,
 				C8667B86191877D0003D44CF /* HVHierarchyScanner.m in Sources */,
 				C886B797191A11D300D00B5D /* TypeSwapUtil.m in Sources */,
+				C88BB0DB191A47E000D83F99 /* KIFTestActor.m in Sources */,
 				C8667B7F191877D0003D44CF /* HVCoreDataHandler.m in Sources */,
+				C88BB0DA191A47E000D83F99 /* KIFSystemTestActor.m in Sources */,
 				C8667BA219187873003D44CF /* UIAccessibilityElement-KIFAdditions.m in Sources */,
 				C886B7A8191A11E100D00B5D /* CommandKey.m in Sources */,
 				C8667BA119187873003D44CF /* NSFileManager-KIFAdditions.m in Sources */,

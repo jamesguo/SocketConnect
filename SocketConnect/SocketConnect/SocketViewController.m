@@ -16,6 +16,7 @@
 #define kTestHost @"http://172.16.156.234"
 #define kTestPort 6100
 #define TIMEOUT 10
+#define CT_LABEL_WIDGET(view, tagName) do{[(view) setupAccessibility:(tagName)];}while(0)
 @interface SocketViewController ()
 {
     NSThread * backgroundThread;
@@ -45,6 +46,7 @@
     self.serverPortTextField.delegate = self;
     
     self.serverAddressTextField.text = kTestHost;
+    self.serverAddressTextField.accessibilityLabel = @"cthome_flight";
     self.serverPortTextField.text = [[NSNumber numberWithInt:kTestPort] stringValue];
     self.receiveTextView.text = @"";
     self.receiveTextView.editable = NO;
