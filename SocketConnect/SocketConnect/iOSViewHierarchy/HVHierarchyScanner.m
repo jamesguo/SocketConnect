@@ -404,7 +404,8 @@ static NSString* NSStringFromCATransform3D(CATransform3D transform)
       NSDictionary *subviewDictionary = [HVHierarchyScanner recursivePropertiesScan:subview];
       if (subviewDictionary)
       {
-        [subViewsArray addObject:subviewDictionary];
+        [subViewsArray insertObject:subviewDictionary atIndex:0];
+//        [subViewsArray addObject:subviewDictionary];
       }
     }
     [viewDescription setValue:subViewsArray forKey:@"views"];

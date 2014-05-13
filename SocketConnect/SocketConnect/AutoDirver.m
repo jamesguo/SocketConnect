@@ -16,6 +16,7 @@
 #import "CommandDeviceInfo.h"
 #import "CommandClick.h"
 #import "CommandKey.h"
+#import "CommandSee.h"
 #import "CommandScreenShot.h"
 #import "KIFTypist.h"
 
@@ -74,6 +75,12 @@
         {
             CommandFind * findCommand = [[CommandFind alloc]init];
             [findCommand excute:actionCommand ActionResult:reponseCommand];
+            break;
+        }
+        case SEE:
+        {
+            CommandSee * seeCommand = [[CommandSee alloc]init];
+            [seeCommand excute:actionCommand ActionResult:reponseCommand];
             break;
         }
         case CLICK:

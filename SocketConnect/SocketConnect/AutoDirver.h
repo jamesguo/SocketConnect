@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "iOSHierarchyViewer.h"
 @interface AutoDirver : NSObject
 - (BOOL)start;
 @end

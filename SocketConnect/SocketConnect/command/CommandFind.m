@@ -19,7 +19,7 @@
 -(void) excute:(ActionProtocol*)requestCommand ActionResult:(ActionProtocol*)responseCommand{
     NSDictionary* params = requestCommand.params;
     int findType = [[params objectForKey:@"findType"] integerValue];
-    NSString * value = [params objectForKey:@"value"];
+    NSString * value = [[params objectForKey:@"value"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ;
     _Bool multiple = [params objectForKey:@"multiple"];
     
 //    [CommandFind getViews:NAME TextValue:@"Socket Demo" Multi:TRUE];
@@ -87,7 +87,8 @@
             {
                 for (UIWindow *window in app.windows)
                 {
-                    UIView* findView2 = [self waitForViewWithAccessibilityLabel:value valueStr:nil traits:UIAccessibilityTraitNone tappable:TRUE];
+//                    UIView* findView2 = [self waitForViewWithAccessibilityLabel:value valueStr:nil traits:UIAccessibilityTraitNone tappable:TRUE];
+//                    UIView* findView1 = [[[KIFUITestActor alloc]init] waitForViewWithAccessibilityLabel:value];
                     [CommandFind ViewScan:window Find:findType TextValue:value Result:resultArray];
                 }
             };
@@ -100,7 +101,12 @@
                 dispatch_sync(dispatch_get_main_queue(), gatherProperties);
             }
         }
-        return StepResultSuccess;
+        if([resultArray count]>0)
+        {
+            return StepResultSuccess;
+        }else{
+            return StepResultWait;
+        }
     }];
 }
 
@@ -276,37 +282,73 @@
                     [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.y)] forKey:@"layer_position_y"];
                     [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
                     [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
-                    [resultArray addObject:viewDescription];
+                    [resultArray insertObject:viewDescription atIndex:0];
                 }
                 break;
             }
             case NAME:
             {
+//                UICascadingTextStorage
+                NSString *label = view.accessibilityLabel ? view.accessibilityLabel: @"";
+                NSString *identifer = view.accessibilityIdentifier ? view.accessibilityIdentifier: @"";
+                NSString *accessValue = view.accessibilityValue ? view.accessibilityValue: @"";
+                
+                if (
+                    ([label isKindOfClass:[NSString class]] &&[[label stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:value])
+                    ||
+                    ([identifer isKindOfClass:[NSString class]] &&[[identifer stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:value])
+                    ||
+                    ([accessValue isKindOfClass:[NSString class]] &&[[accessValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:value])
+                    )
+                {
+                    NSMutableDictionary *viewDescription = [[NSMutableDictionary alloc] initWithCapacity:10];
+                    [viewDescription setValue:[NSNumber numberWithLong:(long)view] forKey:@"id"];
+                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.x)] forKey:@"layer_bounds_x"];
+                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.y)] forKey:@"layer_bounds_y"];
+                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.width)] forKey:@"layer_bounds_w"];
+                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.height)] forKey:@"layer_bounds_h"];
+                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.x)] forKey:@"layer_position_x"];
+                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.y)] forKey:@"layer_position_y"];
+                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
+                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
+                    [resultArray insertObject:viewDescription atIndex:0];
+                    break;
+                }
                 unsigned int count = [properties count];
-                int i;
-                for (i = 0; i < count; i++){
+                for (int i = 0; i < count; i++){
+                    if(i==97){
+                        [properties objectAtIndex:i];
+                    }
                    NSMutableDictionary *propertyDescription = [properties objectAtIndex:i];
-                    NSString *label = view.accessibilityLabel ? view.accessibilityLabel: @"";
-                    if(![label isEqualToString:@""]){
-                        if ([label isEqualToString:value]||[view.accessibilityValue isEqualToString:value])
+                    if([[NSString stringWithUTF8String:object_getClassName(view)] isEqualToString:@"UIKBKeyView"])
+                    {
+                        if ([(NSString*)[propertyDescription objectForKey:@"name"] isEqualToString:@"cacheKey"])
                         {
-                            NSMutableDictionary *viewDescription = [[NSMutableDictionary alloc] initWithCapacity:10] ;
-                            [viewDescription setValue:[NSNumber numberWithLong:(long)view] forKey:@"id"];
-                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.x)] forKey:@"layer_bounds_x"];
-                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.y)] forKey:@"layer_bounds_y"];
-                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.width)] forKey:@"layer_bounds_w"];
-                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.height)] forKey:@"layer_bounds_h"];
-                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.x)] forKey:@"layer_position_x"];
-                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.y)] forKey:@"layer_position_y"];
-                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
-                            [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
-                            [resultArray addObject:viewDescription];
-                            break;
+                            NSObject * textValue=[propertyDescription objectForKey:@"value"];
+                            if([textValue isKindOfClass:[NSString class]])
+                            {
+                                NSRange range = [(NSString*)textValue rangeOfString:value];
+                                if (range.length >0){
+                                    NSMutableDictionary *viewDescription = [[NSMutableDictionary alloc] initWithCapacity:10] ;
+                                    [viewDescription setValue:[NSNumber numberWithLong:(long)view] forKey:@"id"];
+                                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.x)] forKey:@"layer_bounds_x"];
+                                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.origin.y)] forKey:@"layer_bounds_y"];
+                                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.width)] forKey:@"layer_bounds_w"];
+                                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.bounds.size.height)] forKey:@"layer_bounds_h"];
+                                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.x)] forKey:@"layer_position_x"];
+                                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.y)] forKey:@"layer_position_y"];
+                                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
+                                    [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
+                                    [resultArray insertObject:viewDescription atIndex:0];
+                                    break;
+                                }
+                            }
                         }
                     }
                     if ([(NSString*)[propertyDescription objectForKey:@"name"] isEqualToString:@"text"])
                     {
-                        if([(NSString *)[propertyDescription objectForKey:@"value"] isEqualToString:value])
+                        NSObject * textValue=[propertyDescription objectForKey:@"value"];
+                        if([textValue isKindOfClass:[NSString class]] && [[(NSString*)textValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:value])
                         {
                             NSMutableDictionary *viewDescription = [[NSMutableDictionary alloc] initWithCapacity:10] ;
                             [viewDescription setValue:[NSNumber numberWithLong:(long)view] forKey:@"id"];
@@ -318,12 +360,12 @@
                             [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.position.y)] forKey:@"layer_position_y"];
                             [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
                             [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(view.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
-                            [resultArray addObject:viewDescription];
+                            [resultArray insertObject:viewDescription atIndex:0];
                         }
                     }
                 }
-                break;
             }
+            break;
             case ID:{
                 
                 UIView* findView = [CommandFind findViewById:[value intValue]];
@@ -337,7 +379,7 @@
                 [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(findView.layer.position.y)] forKey:@"layer_position_y"];
                 [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(findView.layer.anchorPoint.x)] forKey:@"layer_anchor_x"];
                 [viewDescription setValue:[NSNumber numberWithFloat:handleNotFinite(findView.layer.anchorPoint.y)] forKey:@"layer_anchor_y"];
-                [resultArray addObject:viewDescription];
+                [resultArray insertObject:viewDescription atIndex:0];
                 break;
             }
             default:
