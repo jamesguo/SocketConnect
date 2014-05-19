@@ -10,7 +10,7 @@
 #import "KIFTypist.h"
 #import <objc/runtime.h>
 #import "UIApplication-KIFAdditions.h"
-
+#define TimeOut 10.0
 @implementation BlockDelayUtil
 
 + (void)performBlock:(void (^)(void))block afterDelay:(NSTimeInterval)delay
@@ -44,7 +44,7 @@
         }
         
         if (result == StepResultWait) {
-            result = StepResultFailure;
+            result = StepResultWait;
         }
         
         if (completionBlock) {
@@ -61,13 +61,16 @@
     NSTimeInterval startTime = [NSDate timeIntervalSinceReferenceDate];
     
     [BlockDelayUtil runBlock:^StepResult() {
-        WaitCondition((([NSDate timeIntervalSinceReferenceDate] - startTime) >= timeInterval),nil,@"View is not enabled for interaction");
-        return StepResultSuccess;
+        if(([NSDate timeIntervalSinceReferenceDate] - startTime) >= timeInterval){
+            return StepResultSuccess;
+        }else{
+            return StepResultWait;
+        }
     } timeout:timeInterval + 1];
 }
 + (void)runBlock:(ExecutionBlock)executionBlock complete:(CompletionBlock)completionBlock
 {
-    [BlockDelayUtil runBlock:executionBlock complete:completionBlock timeout:10.0];
+    [BlockDelayUtil runBlock:executionBlock complete:completionBlock timeout:TimeOut];
 }
 
 + (void)runBlock:(ExecutionBlock)executionBlock timeout:(NSTimeInterval)timeout

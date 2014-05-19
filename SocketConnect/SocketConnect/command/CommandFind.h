@@ -13,7 +13,7 @@ typedef enum {
     ID,
 }FindType;
 @interface CommandFind : BaseCommand
-+ (void)getViews:(FindType)findType TextValue:(NSString *)value Multi:(BOOL)multiple Result:(NSMutableArray*) resultArray;
++(void)findViews:(FindType)findType TextValue:(NSString *)value Multi:(BOOL)multiple Result:(NSMutableArray*) resultArray timeout:(int)maxTime;
 + (void)classProperties:(Class)class object:(NSObject *)obj result:(NSMutableArray *)properties;
 + (void)ViewScan:(UIView *)view Find:(FindType)findType TextValue:(NSString *)value Result:(NSMutableArray*) resultArray;
 + (UIView *)findViewById:(long)_id;

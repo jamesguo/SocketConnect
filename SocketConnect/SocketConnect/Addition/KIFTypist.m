@@ -14,7 +14,7 @@
 #import "CGGeometry-KIFAdditions.h"
 #import "UIAccessibilityElement-KIFAdditions.h"
 
-static NSTimeInterval keystrokeDelay = 0.1f;
+static NSTimeInterval keystrokeDelay = 0.2f;
 
 @interface KIFTypist()
 @property (nonatomic, assign) BOOL keyboardHidden;

@@ -12,4 +12,5 @@
 
 + (void)  SwapIntToBytes:(int)value  Result:(unsigned char[])bytes;
 + (int)  SwapBytesToInt:(char[])bytes;
++(NSString*)getSimpleStr:(NSString*)origin;
 @end

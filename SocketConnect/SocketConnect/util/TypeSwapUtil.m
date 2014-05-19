@@ -27,4 +27,13 @@
     int result = ((pBlah[0]& 0xFF)<<24)|((pBlah[1]& 0xFF)<<16)|((pBlah[2]&0xFF)<<8)|(pBlah[3]&0xFF);
     return result;
 };
++(NSString*)getSimpleStr:(NSString*)origin
+{
+    NSString* result;
+    result = [origin stringByReplacingOccurrencesOfString:@" " withString:@""];
+    result = [result stringByReplacingOccurrencesOfString:@"　" withString:@""];
+    result = [result stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    result = [result stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    return result;
+}
 @end

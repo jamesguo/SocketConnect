@@ -18,16 +18,32 @@
     UIView* view = [CommandFind findViewById:elementID];
     if (view)
     {
-        [CommandClick tapAccessibilityElement:view];
+        void (^tapView)() = ^()
+        {
+            [CommandClick tapAccessibilityElement:view];
+        };
+        dispatch_sync(dispatch_get_main_queue(), tapView);
+        
+        [BlockDelayUtil waitForTimeInterval:1.0];
+        responseCommand.actionCode = requestCommand.actionCode;
+        responseCommand.seqNo = requestCommand.seqNo;
+        responseCommand.result = (unsigned char) 0;
+        NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
+        [resultInfo setObject:@"success" forKey:@"value"];
+        //    responseCommand.body = [resultInfo JSONString];
+        NSData* resultJson =[NSJSONSerialization dataWithJSONObject:resultInfo options:NSJSONWritingPrettyPrinted error:Nil];
+        responseCommand.body = [[NSString alloc] initWithData:resultJson encoding:NSUTF8StringEncoding] ;
+    }else{
+        responseCommand.actionCode = requestCommand.actionCode;
+        responseCommand.seqNo = requestCommand.seqNo;
+        responseCommand.result = (unsigned char) 1;
+        NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
+        [resultInfo setObject:@"view is nil" forKey:@"value"];
+        //    responseCommand.body = [resultInfo JSONString];
+        NSData* resultJson =[NSJSONSerialization dataWithJSONObject:resultInfo options:NSJSONWritingPrettyPrinted error:Nil];
+        responseCommand.body = [[NSString alloc] initWithData:resultJson encoding:NSUTF8StringEncoding] ;
     }
-    responseCommand.actionCode = requestCommand.actionCode;
-    responseCommand.seqNo = requestCommand.seqNo;
-    responseCommand.result = (unsigned char) 0;
-    NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
-    [resultInfo setObject:@"success" forKey:@"value"];
-//    responseCommand.body = [resultInfo JSONString];
-    NSData* resultJson =[NSJSONSerialization dataWithJSONObject:resultInfo options:NSJSONWritingPrettyPrinted error:Nil];
-    responseCommand.body = [[NSString alloc] initWithData:resultJson encoding:NSUTF8StringEncoding] ;
+    
 
 }
 + (void)tapAccessibilityElement:(UIView *)view
@@ -39,7 +55,6 @@
         [view tapAtPoint:tappablePointInElement];
         return StepResultSuccess;
     }];
-    [BlockDelayUtil waitForTimeInterval:0.5];
 }
 + (void)tapAccessibilityElement:(UIAccessibilityElement *)element inView:(UIView *)view
 {

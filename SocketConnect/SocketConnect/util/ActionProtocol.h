@@ -23,6 +23,8 @@ typedef enum {
     VIEWDUMP= 0x00D,
     DEVICEINFO= 0x00E,
     FINISH= 0x00F,
+    SEE= 0x010,
+    WAITTODISAPPEAR= 0x011,
 } ActionProtocolActionType;
 @interface ActionProtocol : NSObject
 

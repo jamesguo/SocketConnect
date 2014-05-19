@@ -14,16 +14,20 @@
     NSDictionary* params = requestCommand.params;
     long elementID = [[params objectForKey:@"elementId"] longValue];
     NSString* value = [params objectForKey:@"text"];
-    UIView* view = nil;
-    if(elementID>=0){
-        view = [CommandFind findViewById:elementID];
-        [CommandClick tapAccessibilityElement:view];
-        [BlockDelayUtil waitForKeyboard];
-        [self clearTextFromViewWithAccessibilityLabel:view];
-    }
     //    UIView* view=[CommandKey recursiveSearchClickableForView:[CommandFind findViewById:elementID]];
     
-    [CommandKey setText:view appendValue:value];
+    void (^tapText)() = ^()
+    {
+        UIView* view = nil;
+        if(elementID>=0){
+            view = [CommandFind findViewById:elementID];
+            [CommandClick tapAccessibilityElement:view];
+            [BlockDelayUtil waitForKeyboard];
+            [self clearTextFromViewWithAccessibilityLabel:view];
+        }
+        [CommandKey setText:view appendValue:value];
+    };
+    dispatch_sync(dispatch_get_main_queue(), tapText);
     
     //    [self performSelectorOnMainThread:@selector(doIt:) withObject:view waitUntilDone:TRUE];
     //    [self performSelector:@selector(doIt:) withObject:view afterDelay:1];

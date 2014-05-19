@@ -8,17 +8,19 @@
 
 #import "CommandSee.h"
 #import "CommandFind.h"
+#import "TypeSwapUtil.h"
 @implementation CommandSee
 
 -(void) excute:(ActionProtocol*)requestCommand ActionResult:(ActionProtocol*)responseCommand{
     NSDictionary* params = requestCommand.params;
     int findType = [[params objectForKey:@"findType"] integerValue];
-    NSString * value = [[params objectForKey:@"value"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ;
+    NSString * value = [params objectForKey:@"value"];
+    value = [TypeSwapUtil getSimpleStr:[params objectForKey:@"value"]];
     _Bool multiple = [params objectForKey:@"multiple"];
     
     //    [CommandFind getViews:NAME TextValue:@"Socket Demo" Multi:TRUE];
     NSMutableArray* resultArray = [[NSMutableArray alloc]init];
-    [CommandFind getViews:findType TextValue:value Multi:multiple Result:resultArray];
+    [CommandFind findViews:findType TextValue:value Multi:multiple Result:resultArray timeout:3];
     if ([resultArray count]>0) {
         responseCommand.actionCode = requestCommand.actionCode;
         responseCommand.seqNo = requestCommand.seqNo;
@@ -36,7 +38,7 @@
         responseCommand.seqNo = requestCommand.seqNo;
         responseCommand.result = (unsigned char) 1;
         NSMutableDictionary * errorInfo = [[NSMutableDictionary alloc]init];
-        [errorInfo setObject:@"can not find element" forKey:@"errorinfo"];
+        [errorInfo setObject:[NSString stringWithFormat:@"can not see %@",value] forKey:@"errorinfo"];
         NSData* resultJson =[NSJSONSerialization dataWithJSONObject:errorInfo options:NSJSONWritingPrettyPrinted error:Nil];
         responseCommand.body = [[NSString alloc] initWithData:resultJson encoding:NSUTF8StringEncoding] ;
     }

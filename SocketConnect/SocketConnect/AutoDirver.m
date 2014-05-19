@@ -18,24 +18,47 @@
 #import "CommandKey.h"
 #import "CommandSee.h"
 #import "CommandScreenShot.h"
+#import "CommandWaitToDisappear.h"
 #import "KIFTypist.h"
+#import "AppDelegate.h"
+#import "CTNavigationController.h"
+#import "CTRootViewController.h"
+#import "CTHomeTabViewController.h"
 
 #define kTestHost @"http://172.16.156.234"
 #define kTestPort @"6100"
-#define TIMEOUT 10
+#define TIMEOUT 30
 @interface AutoDirver ()
 {
     NSThread * backgroundThread;
     int socketFileDescriptor;
+    BOOL finished;
 }
 @end
 @implementation AutoDirver
+
+
+- (void)popToRootHomePage
+{
+
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    CTNavigationController *navCtr = (CTNavigationController*)delegate.window.rootViewController;
+    CTRootViewController *visibleCtr = (CTRootViewController*)navCtr.visibleViewController;
+    do {
+        [visibleCtr.navigationController popToRootViewControllerAnimated:NO];
+        [visibleCtr dismissModalViewControllerAnimated:NO];
+        visibleCtr = (CTRootViewController*)navCtr.visibleViewController;;
+    } while (![visibleCtr isKindOfClass:[CTHomeTabViewController class]]);
+    
+    [navCtr popToCtripRootViewControllerAnimated:YES];
+}
 
 -(BOOL)start
 {
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", kTestHost, kTestPort]];
     if (backgroundThread==nil||!backgroundThread.isExecuting)
     {
+        finished = FALSE;
         backgroundThread = [[NSThread alloc] initWithTarget:self
                                                    selector:@selector(loadDataFromServerWithURL:)
                                                      object:url];
@@ -64,9 +87,11 @@
     actionCommand.seqNo = [[messageJSON objectForKey:@"seqNo"]integerValue];
     actionCommand.result = [[messageJSON objectForKey:@"result"]integerValue];
     actionCommand.body = [messageJSON objectForKey:@"body"];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    
+     NSLog(@"Recevie %@",actionCommand.body );
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self excutorCommand:actionCommand];
-    }];
+//    }];
 }
 - (void) excutorCommand:(ActionProtocol *)actionCommand{
     ActionProtocol * reponseCommand = [[ActionProtocol alloc]init];
@@ -107,17 +132,55 @@
             [command excute:actionCommand ActionResult:reponseCommand];
             break;
         }
+        case WAITTODISAPPEAR:
+        {
+            CommandWaitToDisappear * command = [[CommandWaitToDisappear alloc]init];
+            [command excute:actionCommand ActionResult:reponseCommand];
+            break;
+        }
         case FINISH:
-            reponseCommand=nil;
+        {
+            reponseCommand.actionCode = actionCommand.actionCode;
+            reponseCommand.seqNo = actionCommand.seqNo;
+            reponseCommand.result = (unsigned char) 0;
+            NSMutableDictionary * resultInfo = [[NSMutableDictionary alloc]init];
+            [resultInfo setObject:@"success" forKey:@"value"];
+            NSData* jsonData =[NSJSONSerialization dataWithJSONObject:resultInfo options:NSJSONWritingPrettyPrinted error:Nil];
+            reponseCommand.body = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] ;
+        }
         default:
             break;
     }
     if (reponseCommand) {
         [self sendMessage:[reponseCommand toBytes]];
     }
+    if(reponseCommand.actionCode==FINISH){
+        close(socketFileDescriptor);
+    }
+}
+- (void)restart
+{
+    if (!finished) {
+        finished = TRUE;
+        [self popToRootHomePage];
+        if(backgroundThread!=nil){
+            [backgroundThread cancel];
+            backgroundThread = nil;
+        }
+        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", kTestHost, kTestPort]];
+        if (backgroundThread==nil||!backgroundThread.isExecuting)
+        {
+            backgroundThread = [[NSThread alloc] initWithTarget:self
+                                                       selector:@selector(loadDataFromServerWithURL:)
+                                                         object:url];
+            [backgroundThread start];
+        }
+    }
 }
 - (void)loadDataFromServerWithURL:(NSURL *)url
 {
+    [UIApplication sharedApplication].idleTimerDisabled=YES;
+    
     NSString * host = [url host];
     NSNumber * port = [url port];
     // Create socket
@@ -151,15 +214,20 @@
     struct timeval timeout;
     timeout.tv_sec = TIMEOUT;
     timeout.tv_usec = 0;
-    setsockopt(socketFileDescriptor,SOL_SOCKET,SO_SNDTIMEO,(char *)&timeout,sizeof(struct timeval));
-    //    setsockopt(socketFileDescriptor,SOL_SOCKET,SO_RCVTIMEO,(char *)&timeout,sizeof(struct timeval));
+//    setsockopt(socketFileDescriptor,SOL_SOCKET,SO_SNDTIMEO,(char *)&timeout,sizeof(struct timeval));
+//    setsockopt(socketFileDescriptor,SOL_SOCKET,SO_RCVTIMEO,(char *)&timeout,sizeof(struct timeval));
     // Connect the socket
     //
-    while (connect(socketFileDescriptor, (struct sockaddr *) &socketParameters, sizeof(socketParameters))==-1) {
+    if(connect(socketFileDescriptor, (struct sockaddr *) &socketParameters, sizeof(socketParameters))==-1) {
         NSString * errorInfo = [NSString stringWithFormat:@" >> Failed to connect to %@:%@", host, port];
         [self networkFailedWithErrorMessage:errorInfo];
         sleep(10);
+        [self loadDataFromServerWithURL:url];
+        return;
     }
+    
+    finished = FALSE;
+    
     NSLog(@" >> Successfully connected to %@:%@", host, port);
     //    [self listenSocket];
     
@@ -187,8 +255,6 @@
     [multData appendBytes:bytes length:4];
     [multData appendBytes:data length:strlen(data)];
     
-    NSLog(@"[%s]",multData.bytes);
-    
     if(socketFileDescriptor!=-1){
         int result = send(socketFileDescriptor, multData.bytes, total, 0);
         if(result==-1){
@@ -203,15 +269,15 @@
             NSLog(@"SendMessage %s",data);
         }
     }else{
-        NSLog(@"Failed to sendMessage : socket is closed");
-        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", kTestHost,kTestPort]];
-        [self loadDataFromServerWithURL:url];
+//        NSLog(@"Failed to sendMessage : socket is closed");
+//        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", kTestHost,kTestPort]];
+//        [self loadDataFromServerWithURL:url];
     }
 }
 -(void)listenSocket
 {
     NSMutableData * data ;
-    while (1) {
+    while (!finished) {
         data = [[NSMutableData alloc] init];
         char lengthBuffer[4];
         int result = recv(socketFileDescriptor, lengthBuffer, 4, 0);
@@ -244,7 +310,10 @@
                 }
             }
             if(currentOffset==totalLength){
-                [self networkSucceedWithData:data];
+               NSThread* thread = [[NSThread alloc] initWithTarget:self
+                                        selector:@selector(networkSucceedWithData:) object:data];
+                [thread start];
+//                [self networkSucceedWithData:data];
             }else{
                 NSLog(@"Failed to readContent");
             }
@@ -261,8 +330,10 @@
             }
         }
     }
-	close(socketFileDescriptor);
-    socketFileDescriptor=-1;
+    
+    //当然一定要慎用，记着退出程序时把自动休眠功能开启
+    [UIApplication sharedApplication].idleTimerDisabled=NO;
+    [self restart];
 }
 
 @end

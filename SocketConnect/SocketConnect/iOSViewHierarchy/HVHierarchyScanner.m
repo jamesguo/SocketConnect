@@ -37,6 +37,12 @@ CGFloat handleNotFinite(CGFloat value)
 {
   UIApplication *app = [UIApplication sharedApplication];
   if (app) {
+      if (app.keyWindow&&![app.windows containsObject:app.keyWindow]) {
+          UIView *result = [HVHierarchyScanner recursiveSearchForView:_id parent:app.keyWindow];
+          if (result) {
+              return result;
+          }
+      }
     for (UIView *v in [app windows]) {
       UIView *result = [HVHierarchyScanner recursiveSearchForView:_id parent:v];
       if (result) {
@@ -350,7 +356,11 @@ static NSString* NSStringFromCATransform3D(CATransform3D transform)
     NSMutableDictionary *viewDescription = [[NSMutableDictionary alloc] initWithCapacity:10] ;
     // put base properties
     NSString *className = [[view class] description];
-    NSString *objectName = view.accessibilityLabel ? [NSString stringWithFormat:@"%@ : %@", view.accessibilityLabel, className] : className;
+      
+    NSString *labelOrigin = view.accessibilityLabel ? [NSString stringWithFormat:@"%@", view.accessibilityLabel] : @"";
+    NSString * nameAddIdentifer = view.accessibilityIdentifier ? [NSString stringWithFormat:@"%@|%@", view.accessibilityIdentifier,labelOrigin] : labelOrigin;
+    NSString * nameAddAccessValue = view.accessibilityValue ? [NSString stringWithFormat:@"%@|%@", view.accessibilityValue,nameAddIdentifer] : nameAddIdentifer;
+    NSString * objectName = [NSString stringWithFormat:@"%@ : %@", nameAddAccessValue,className];
     [viewDescription setValue:objectName forKey:@"class"];
     [viewDescription setValue:[NSNumber numberWithLong:(long)view] forKey:@"id"];
     
@@ -425,7 +435,14 @@ static NSString* NSStringFromCATransform3D(CATransform3D transform)
         NSDictionary* windowDictionary = [HVHierarchyScanner recursivePropertiesScan:window];
         [windowDictionary setValue:[NSString stringWithFormat:@"/preview?id=%ld", (long)window] forKey:@"preview"];
         [windowViews addObject:windowDictionary];
+          NSLog(@"windows %@",window);
       }
+        if (app.keyWindow&&![app.windows containsObject:app.keyWindow]) {
+            NSDictionary* windowDictionary = [HVHierarchyScanner recursivePropertiesScan:app.keyWindow];
+            [windowDictionary setValue:[NSString stringWithFormat:@"/preview?id=%ld", (long)app.keyWindow] forKey:@"preview"];
+            [windowViews addObject:windowDictionary];
+            NSLog(@"windows %@",app.keyWindow);
+        }
     };
 
     //! don't want to lock out our thread
