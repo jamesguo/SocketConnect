@@ -17,6 +17,7 @@
 #import "CommandClick.h"
 #import "CommandKey.h"
 #import "CommandSee.h"
+#import "CommandViewDump.h"
 #import "CommandScreenShot.h"
 #import "CommandWaitToDisappear.h"
 #import "KIFTypist.h"
@@ -25,7 +26,9 @@
 #import "CTRootViewController.h"
 #import "CTHomeTabViewController.h"
 
-#define kTestHost @"http://172.16.156.234"
+#define kTestHost @"http://172.16.45.233"
+//#define kTestHost @"http://172.16.45.233"
+
 #define kTestPort @"6100"
 #define TIMEOUT 30
 @interface AutoDirver ()
@@ -129,6 +132,12 @@
         case PRESSKEY:
         {
             CommandKey * command = [[CommandKey alloc]init];
+            [command excute:actionCommand ActionResult:reponseCommand];
+            break;
+        }
+        case VIEWDUMP:
+        {
+            CommandViewDump * command = [[CommandViewDump alloc]init];
             [command excute:actionCommand ActionResult:reponseCommand];
             break;
         }

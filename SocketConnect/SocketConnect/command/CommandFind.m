@@ -376,9 +376,6 @@
                 }
                 unsigned int count = [properties count];
                 for (int i = 0; i < count; i++){
-                    if(i==97){
-                        [properties objectAtIndex:i];
-                    }
                    NSMutableDictionary *propertyDescription = [properties objectAtIndex:i];
                     if([[NSString stringWithUTF8String:object_getClassName(view)] isEqualToString:@"UIKBKeyView"])
                     {

@@ -20,7 +20,8 @@
     [deviceInfo setObject:@"" forKey:@"MANUFACTUER"];
     [deviceInfo setObject:device_.identifierForVendor.UUIDString forKey:@"UUID"];
     [deviceInfo setObject:device_.systemVersion forKey:@"VERSION"];
-    [deviceInfo setObject:device_.name forKey:@"NAME"];
+    [deviceInfo setObject:@"IOS" forKey:@"OS"];
+    [deviceInfo setObject:device_.model forKey:@"NAME"];
 //    if ([resultArray count]>0) {
         responseCommand.actionCode = requestCommand.actionCode;
         responseCommand.seqNo = requestCommand.seqNo;
